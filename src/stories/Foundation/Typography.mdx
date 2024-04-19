@@ -1,0 +1,88 @@
+import { Meta, Typeset } from "@storybook/blocks";
+
+<Meta title="Tokens/Typography" />
+
+export const typography = {
+  type: {
+    primary: `"Roboto", sans-serif`,
+    secondary: `"Roboto Mono", monospace`,
+    code: "Menlo",
+  },
+  weight: {
+    regular: 400,
+    medium: 500,
+    bold: 700,
+  },
+  size: {
+    h1: 38,
+    h2: 30,
+    h3: 24,
+    h4: 20,
+    h5: 16,
+    body: 14,
+    code: 14,
+    footNote: 12,
+  },
+};
+
+export const SampleText = {
+  lorem: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  code: "let random = Math.floor(Math.random())",
+  footNote:
+    "1See Burquest (2010), especially chapter 5, for more information on this journalist’s theory.",
+  description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum enim facilisis gravida neque. Risus at ultrices mi tempus imperdiet nulla. Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Morbi tincidunt augue interdum velit euismod in pellentesque massa. Ipsum dolor sit amet consectetur adipiscing elit.",
+};
+
+# Typography
+
+**Font:** Roboto
+
+**Weights:** 400(regular), 500(medium), 700(bold)
+
+<br />
+<br />
+
+## Headings
+
+<Typeset
+  fontSizes={[
+    typography.size.h1 + "px",
+    typography.size.h2 + "px",
+    typography.size.h3 + "px",
+    typography.size.h4 + "px",
+    typography.size.h5 + "px",
+    typography.size.body + "px",
+    typography.size.footNote + "px",
+  ]}
+  fontWeight={typography.weight.medium}
+  sampleText={SampleText.lorem}
+  fontFamily={typography.type.primary}
+/>
+
+## Code
+
+<Typeset
+  fontSizes={[typography.size.code + "px"]}
+  fontWeight={typography.weight.regular}
+  sampleText={SampleText.code}
+  fontFamily={typography.type.code}
+/>
+
+## Footnote
+
+<Typeset
+  fontSizes={[typography.size.footNote + "px"]}
+  fontWeight={typography.weight.regular}
+  sampleText={SampleText.footNote}
+  fontFamily={typography.type.secondary}
+/>
+
+## Description
+
+<Typeset
+  fontSizes={[typography.size.footNote + "px"]}
+  fontWeight={typography.weight.regular}
+  sampleText={SampleText.description}
+  fontFamily={typography.type.primary}
+/>

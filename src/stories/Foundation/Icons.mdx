@@ -1,0 +1,56 @@
+import * as Icons from "@ant-design/icons";
+import { nanoid } from "nanoid";
+import { Meta, Title, IconGallery, IconItem } from "@storybook/blocks";
+
+<Meta title="Tokens/Icons" />
+
+<Title>Outlined</Title>
+<br />
+<IconGallery>
+  {Object.entries(Icons)
+    .filter(
+      ([name]) =>
+        name.charAt(0) === name.charAt(0).toUpperCase() &&
+        name.includes("Outlined")
+    )
+    .map(([name, Icon]) => (
+      <IconItem name={name} key={nanoid()} value={name}>
+        <Icon />
+      </IconItem>
+    ))}
+</IconGallery>
+
+<br />
+<Title>Filled</Title>
+<br />
+<IconGallery>
+  {Object.entries(Icons)
+    .filter(
+      ([name]) =>
+        name.charAt(0) === name.charAt(0).toUpperCase() &&
+        name.includes("Filled")
+    )
+    .map(([name, Icon]) => (
+      <IconItem name={name} key={nanoid()} value={name}>
+        <Icon />
+      </IconItem>
+    ))}
+  <br />
+</IconGallery>
+
+<br />
+<Title>TwoTone</Title>
+<br />
+<IconGallery>
+  {Object.entries(Icons)
+    .filter(
+      ([name]) =>
+        name.charAt(0) === name.charAt(0).toUpperCase() &&
+        name.includes("TwoTone")
+    )
+    .map(([name, Icon]) => (
+      <IconItem name={name} key={nanoid()} value={name}>
+        <Icon />
+      </IconItem>
+    ))}
+</IconGallery>

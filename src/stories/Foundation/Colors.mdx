@@ -1,0 +1,32 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import { colorTokensGenerator, capitalize } from "./colors.helper";
+import { nanoid } from "nanoid";
+
+<Meta title="Tokens/Colors" />
+
+{
+["Light", "Dark"].map((mode) => <div key={nanoid()}>
+
+<h1>{mode}</h1>
+<hr />
+<br />
+<br />
+
+{colorTokensGenerator(mode).map(colorToken => {
+const [key] = Object.keys(colorToken);
+const values = colorToken[key];
+
+return <div key={nanoid()}>
+
+<ColorPalette >
+    <ColorItem
+    title={capitalize(key)}
+    colors={{...values}}
+    style={{color: key}}
+
+    />
+
+</ColorPalette></div>;
+})}
+</div>)
+}
