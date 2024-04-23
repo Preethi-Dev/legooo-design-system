@@ -1,13 +1,16 @@
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../src/tokens";
+
 const globalTypes = {
   themes: {
     description: "Global theme for components",
-    defaultValue: "light",
+    defaultValue: "Light",
     toolbar: {
       // The label to show for this toolbar item
       title: "Theme",
       icon: "circlehollow",
       // Array of plain string values or MenuItem shape (see below)
-      items: ["light", "dark"],
+      items: ["Light", "Dark"],
       // Change title based on selected value
       dynamicTitle: true,
     },
@@ -25,6 +28,16 @@ const preview = {
       },
     },
   },
+  decorators: [
+    (Story, context) => {
+      const theme = myThemes[context.globals.themes];
+      return (
+        <ThemeProvider theme={theme}>
+          <Story />
+        </ThemeProvider>
+      );
+    },
+  ],
 };
 
 export default preview;
