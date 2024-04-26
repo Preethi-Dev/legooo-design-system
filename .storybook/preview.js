@@ -22,6 +22,7 @@ const preview = {
   globalTypes,
   parameters: {
     controls: {
+      expanded: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
