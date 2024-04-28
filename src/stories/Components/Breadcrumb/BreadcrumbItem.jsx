@@ -1,8 +1,8 @@
 import React from "react";
 import { Container } from "./Breadcrumb";
 import { nanoid } from "nanoid";
-import Link from "./Link";
-import Separator from "./Separator";
+import { Link } from "./Link";
+import { Separator } from "./Separator";
 
 const BreadcrumbItem = (props) => {
   const { $items, $separator, $showLastSeparator, collapsed, setCollapsed } =

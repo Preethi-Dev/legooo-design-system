@@ -9,8 +9,6 @@ const Divider = styled.div`
     findTokenValue(theme["Breadcrumb-marginXS"], theme)}px;
 `;
 
-const Separator = ({ separator }) => {
+export const Separator = ({ separator }) => {
   return <Divider>{separator || "/"}</Divider>;
 };
-
-export default Separator;

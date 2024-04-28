@@ -1,6 +1,6 @@
-export * from "./Breadcrumb";
+export { default } from "./Breadcrumb";
 export * from "./BreadcrumbItem";
 export * from "./CollapsedBreadcrumb";
 export * from "./Link";
 export * from "./Separator";
-export * from "./Breadcrumb.stories";
+export * as BreadcrumbStories from "./Breadcrumb.stories";

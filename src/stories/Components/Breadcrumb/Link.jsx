@@ -27,10 +27,9 @@ export const Container = styled.a`
     background-color: ${({ theme }) =>
       findTokenValue(theme["Breadcrumb-colorBgTextHover"], theme)};
   }
-  ${({ theme }) => console.log(findTokenValue(theme["fontSizeIcon"], theme))}
 `;
 
-const Link = ({ ...props }) => {
+export const Link = ({ ...props }) => {
   const Icon = Icons[props.$setIcon];
   const DropDownIcon = Icons["DownOutlined"];
   return (
@@ -73,5 +72,3 @@ Link.defaultProps = {
   $text: true,
   href: "https://react.dev/",
 };
-
-export default Link;
