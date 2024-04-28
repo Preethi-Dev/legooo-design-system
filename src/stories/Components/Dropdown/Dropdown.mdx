@@ -1,0 +1,117 @@
+import { Canvas, Meta, Primary, Controls, Stories } from "@storybook/blocks";
+import * as DropdownStories from "./Dropdown.stories";
+
+<Meta of={DropdownStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Dropdown</h1>
+
+By clicking on the trigger, a dropdown menu will appear, which allows you to choose an option and execute the relevant action.
+
+<br />
+<br />
+
+# Dropdown Trigger
+
+<Canvas of={DropdownStories.Basic} />
+
+# Properties
+
+<Controls of={DropdownStories.Basic} />
+
+<br />
+<br />
+
+# Dropdown Menu Item
+
+<Canvas of={DropdownStories.DropdownItem} />
+
+# Properties
+
+<Controls of={DropdownStories.DropdownItem} />
+
+<br />
+<br />
+
+# Basic
+
+<Canvas of={DropdownStories.Basic} />
+
+# Properties
+
+<Controls of={DropdownStories.Basic} />
+
+<p style={{ fontSize: "1.5rem" }}>$items</p>
+
+An array of items. A minimal data structure:
+
+```jsx
+[
+  "kurta",
+  "shoes",
+  "jeans",
+  "t-shirt",
+  "socks",
+  "dress",
+  "handbag",
+  "earrings",
+  "scarf",
+  "sweater",
+  "pants",
+  "hat",
+  "jacket",
+  "boots",
+];
+```
+
+<br />
+<br />
+
+# Placements
+
+Support 6 placements.
+
+`"bottomLeft"`
+`"bottom"`
+`"bottomRight"`
+`"topLeft"`
+`"top"`
+`"topRight"`
+
+<Canvas of={DropdownStories.Placements} />
+
+# Properties
+
+<Controls of={DropdownStories.Placements} />
+
+<br />
+<br />
+
+# Arrows
+
+Support 6 placements.
+
+`"bottomLeft"`
+`"bottom"`
+`"bottomRight"`
+`"topLeft"`
+`"top"`
+`"topRight"`
+
+<Canvas of={DropdownStories.Arrows} />
+
+# Properties
+
+<Controls of={DropdownStories.Arrows} />
+
+<br />
+<br />
+
+# Scroll Menu
+
+Support Scroll on Menu.
+
+<Canvas of={DropdownStories.ScrollMenu} />
+
+# Properties
+
+<Controls of={DropdownStories.ScrollMenu} />
