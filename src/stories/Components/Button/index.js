@@ -1,3 +1,4 @@
-export * from "./Button";
+export { default } from "./Button";
+
 export * from "./Button.helpers";
-export * from "./Button.stories";
+export * as ButtonStories from "./Button.stories";

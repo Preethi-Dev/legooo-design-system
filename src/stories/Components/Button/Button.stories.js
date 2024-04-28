@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import Button from "./Button";
 import { generateIconNames } from "./Button.helpers";
 
@@ -38,6 +39,9 @@ export default {
     },
     disabled: {
       if: { arg: "$type", neq: "Link" },
+      control: "boolean",
+    },
+    $dropdown: {
       control: "boolean",
     },
   },
@@ -115,6 +119,7 @@ export const ButtonGroup = {
         {["Primary", "Default", "Dashed", "Text", "Link"].map((type) => (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            key={nanoid()}
           >
             <Button label={"Button"} $type={type} $size={"Small"} />
 
@@ -129,6 +134,7 @@ export const ButtonGroup = {
         {["Primary", "Default", "Dashed", "Text", "Link"].map((type) => (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            key={nanoid()}
           >
             <Button
               label={"Button"}
@@ -157,6 +163,7 @@ export const ButtonGroup = {
         {["Primary", "Default", "Dashed", "Text", "Link"].map((type) => (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            key={nanoid()}
           >
             <Button
               label={"Button"}
@@ -186,6 +193,7 @@ export const ButtonGroup = {
         {["Primary", "Default", "Dashed", "Text", "Link"].map((type) => (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            key={nanoid()}
           >
             <Button
               label={"Button"}
@@ -217,6 +225,7 @@ export const ButtonGroup = {
         {["Primary", "Default", "Dashed", "Text", "Link"].map((type) => (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            key={nanoid()}
           >
             <Button
               label={"Button"}
@@ -249,6 +258,7 @@ export const ButtonGroup = {
         {["Primary", "Default", "Dashed", "Text", "Link"].map((type) => (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            key={nanoid()}
           >
             <Button
               label={"Button"}
@@ -284,6 +294,7 @@ export const ButtonGroup = {
         {["Primary", "Default", "Dashed", "Text", "Link"].map((type) => (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            key={nanoid()}
           >
             <Button
               label={"Button"}
@@ -319,6 +330,7 @@ export const ButtonGroup = {
         {["Primary", "Default", "Dashed", "Text", "Link"].map((type) => (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            key={nanoid()}
           >
             <Button
               label={"Button"}

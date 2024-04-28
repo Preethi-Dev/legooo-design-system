@@ -307,22 +307,21 @@ const BtnFlex = styled.div`
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const Button = ({ label, ...props }) => {
   const iconName = props.$setIcon;
   const Icon = icons[iconName];
+  const DropDownIcon = icons["DownOutlined"];
   return (
     <StyledBtn {...props} as={props.$type === "Link" ? "a" : "button"}>
       <GlobalStyle />
-      {props.$icon && Icon ? (
-        <BtnFlex>
-          <Icon />
-          {label}
-        </BtnFlex>
-      ) : (
-        label
-      )}
+      <BtnFlex>
+        {props.$icon && Icon && <Icon />}
+        {label}
+        {props.$dropdown && <DropDownIcon />}
+      </BtnFlex>
     </StyledBtn>
   );
 };
