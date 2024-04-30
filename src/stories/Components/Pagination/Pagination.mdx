@@ -1,0 +1,66 @@
+import { Canvas, Meta, Primary, Controls, Stories } from "@storybook/blocks";
+import * as PaginationStories from "./Pagination.stories";
+
+<Meta of={PaginationStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Pagination</h1>
+
+A long list can be divided into several pages using `Pagination`, and only one page will be loaded at a time.
+
+# Basic
+
+The default form of pagination.
+
+<Primary />
+
+# Properties
+
+<Controls />
+
+# Truncation
+
+When the number of pages exceeds the maximum display limit, an ellipsis is used to truncate the remaining pages.
+When the current page is separated by more than five pages from both the first and last page, we use double truncation.
+
+<Canvas of={PaginationStories.Truncation} />
+
+# Default selected index
+
+You can specify index of the page to be selected by default.
+
+<Canvas of={PaginationStories.Current} />
+
+<br />
+
+# ⚛️ Atoms of Pagination
+
+- **Pagination Item**
+- **Pagination Arrow**
+- **Pagination ellipsis**
+
+# Pagination Item
+
+Pagination items represent individual pages within the pagination component.
+They typically consist of a number or some other identifier to indicate the page.
+
+<Canvas of={PaginationStories.Item} />
+
+# Properties
+
+<Controls of={PaginationStories.Item} />
+
+# Pagination Arrows
+
+Pagination arrows are used to navigate between pages. They include arrows pointing left or right to indicate the direction of navigation.
+
+<Canvas of={PaginationStories.Prev} />
+
+# Properties
+
+<Controls of={PaginationStories.Prev} />
+
+# Pagination Ellipsis
+
+Pagination ellipsis indicates that there are more pages available but not all are displayed. They are used when there are many pages, and only a subset is shown.
+
+<Canvas of={PaginationStories.Ellipsis} />
