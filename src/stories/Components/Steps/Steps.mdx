@@ -1,0 +1,147 @@
+import { Canvas, Meta, Primary, Controls, Stories } from "@storybook/blocks";
+import * as StepsStories from "./Steps.stories";
+
+<Meta of={StepsStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Steps</h1>
+
+`Steps` is a navigation bar that guides users through the steps of a task.
+
+# Basic
+
+The most basic step bar.
+
+<Primary />
+
+# Properties
+
+<Controls />
+
+# Mini Version
+
+By setting like this: `<Steps size="small">`, you can get a mini version
+
+<Canvas of={StepsStories.Mini} />
+
+# Properties
+
+<Controls of={StepsStories.Mini} />
+
+# With Icons
+
+You can use your own custom icons by setting the property `icon` for `items`.
+
+<Canvas of={StepsStories.WithIcon} />
+
+```jsx
+const items = [
+  {
+    title: "Login",
+    status: "finished",
+    icon: "UserOutlined",
+  },
+  {
+    title: "Verification",
+    status: "finished",
+    icon: "SolutionOutlined",
+  },
+  {
+    title: "Pay",
+    status: "current",
+    icon: "LoadingOutlined",
+  },
+  {
+    title: "Done",
+    status: "wait",
+    icon: "CheckOutlined",
+  },
+];
+```
+
+# Vertical
+
+A simple step bar in the vertical direction.
+
+<Canvas of={StepsStories.Vertical} />
+
+# Properties
+
+<Controls of={StepsStories.Vertical} />
+
+# Vertical Mini
+
+A simple mini version step bar in the vertical direction.
+
+<Canvas of={StepsStories.VerticalMini} />
+
+# Properties
+
+<Controls of={StepsStories.VerticalMini} />
+
+# Dot Style
+
+Steps with progress dot style.
+
+<Canvas of={StepsStories.DotStyle} />
+
+# Properties
+
+<Controls of={StepsStories.DotStyle} />
+
+# Error status
+
+<Canvas of={StepsStories.ErrorState} />
+
+# Properties
+
+<Controls of={StepsStories.ErrorState} />
+
+# Switch Step
+
+You can switch step by specify `current`
+
+<Canvas of={StepsStories.SwitchStep} />
+
+# Properties
+
+<Controls of={StepsStories.SwitchStep} />
+
+<br />
+<br />
+
+# ⚛️ Atoms of Steps
+
+- StepsItemIcon
+- StepsTail
+- StepsItem
+
+<br />
+<br />
+
+# Item Icon
+
+<Canvas of={StepsStories.ItemIcon} />
+
+# Properties
+
+<Controls of={StepsStories.ItemIcon} />
+
+<br />
+
+# Item Tail
+
+<Canvas of={StepsStories.Tail} />
+
+# Properties
+
+<Controls of={StepsStories.Tail} />
+
+<br />
+
+# Item
+
+<Canvas of={StepsStories.Item} />
+
+# Properties
+
+<Controls of={StepsStories.Item} />
