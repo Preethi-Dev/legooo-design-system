@@ -1,0 +1,30 @@
+import { Canvas, Meta, Primary, Controls, Stories } from "@storybook/blocks";
+import * as AvatarStories from "./Avatar.stories";
+
+<Meta of={AvatarStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Avatar</h1>
+
+Avatars can be used to represent people or objects. It supports images, Icon or letter
+
+# Basic
+
+The most basic step bar.
+
+<Primary />
+
+# Properties
+
+<Controls />
+
+# Avatar Group
+
+Avatar group display.
+
+<Canvas of={AvatarStories.Group} />
+
+# With Badge
+
+Usually used for reminders and notifications.
+
+<Canvas of={AvatarStories.WithBadge} />
