@@ -1,0 +1,70 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
+import * as BadgeStories from "./Badge.stories";
+
+<Meta of={BadgeStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Badge</h1>
+
+Small numerical value or status descriptor for UI elements.
+
+# Basic
+
+Simplest Usage.
+
+<Canvas of={BadgeStories.Example} />
+
+<Source
+  code={`
+<Badge $count={2} $status={"error"}>
+    <Profile></Profile>
+</Badge>`}
+/>
+
+# Properties
+
+<Controls of={BadgeStories.Example} />
+
+# Overflow Count
+
+`$overflowCount` shows the count exceeding display limits in the component
+
+<Canvas of={BadgeStories.OverflowCount} />
+
+<Source
+  code={`
+<Badge
+  $overflowCount={1}
+  $status="error"
+  size="default"
+/>
+`}
+/>
+
+# Properties
+
+<Controls of={BadgeStories.OverflowCount} />
+
+# Standalone
+
+Used in standalone
+
+<Canvas of={BadgeStories.Basic} />
+
+# Properties
+
+<Controls of={BadgeStories.Basic} />
+
+# Red badge
+
+<Canvas of={BadgeStories.RedBadge} />
+
+# Properties
+
+<Controls of={BadgeStories.RedBadge} />
