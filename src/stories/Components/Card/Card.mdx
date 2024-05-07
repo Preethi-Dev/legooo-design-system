@@ -1,0 +1,111 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
+import * as CardStories from "./Card.stories";
+
+<Meta of={CardStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Card</h1>
+
+A container for displaying information.
+
+# Basic Card
+
+A basic card containing a title, content and an extra corner content. Supports two sizes: `default` and `small`.
+
+<Canvas of={CardStories.BasicCard} />
+
+# Simple Card
+
+A simple card only containing a content area.
+
+<Canvas of={CardStories.SimpleCard} />
+
+# Customized content
+
+You can use `Meta` to support more flexible content. `Meta` supports `title` and `description`
+
+<Canvas of={CardStories.CustomizedCard} />
+
+<Source
+  code={`<Card
+  $bordered
+  $cover={<img alt="example" src="https://images.unsplash.com/photo-1530785602389-07594beb8b73?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXRzfGVufDB8fDB8fHww"/>}
+  $size="default"
+>
+  <Meta
+    description="www.instagram.com"
+    title="Europe Street beat"
+  />
+</Card>`}
+/>
+
+# Properties
+
+<Controls of={CardStories.CustomizedCard} />
+
+# Support more content configuration
+
+A Card that supports `cover`, `title` and `description`.
+
+<Canvas of={CardStories.MoreConfigurationCard} />
+
+# Properties
+
+<Controls of={CardStories.MoreConfigurationCard} />
+
+<Source
+  code={`<Card
+  $actions={[
+    <SettingOutlined key="setting" />,
+    <EditOutlined key="edit" />,
+    <EllipsisOutlined key="ellipsis" />
+  ]}
+  $bordered
+  $cover={<img alt="example" src="https://images.unsplash.com/photo-1530785602389-07594beb8b73?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXRzfGVufDB8fDB8fHww"/>}
+  $extra={<a href="#">More</a>}
+  $size="default"
+  $title="Card Title"
+>
+  <Meta
+    description="www.instagram.com"
+    title="Europe Street beat"
+  />
+</Card>`}
+/>
+
+<br />
+<br />
+
+# ⚛️ Atom of Calendar
+
+- CardHead
+- CardActions
+- Meta
+
+<br />
+
+# CardHead
+
+<Canvas of={CardStories.Head} />
+
+<Controls of={CardStories.Head} />
+
+<br />
+
+# CardActions
+
+<Canvas of={CardStories.Actions} />
+
+<Controls of={CardStories.Actions} />
+
+# Meta
+
+<Canvas of={CardStories.Content} />
+
+<Controls of={CardStories.Content} />
