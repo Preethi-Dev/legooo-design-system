@@ -1,0 +1,61 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
+import * as CarouselStories from "./Carousel.stories";
+
+<Meta of={CarouselStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Carousel</h1>
+
+A carousel component. Scales with its container.
+
+# Example
+
+<Canvas of={CarouselStories.Example} />
+
+<Controls of={CarouselStories.Example} />
+
+# Basic
+
+Basic usage.
+
+<Canvas of={CarouselStories.Basic} />
+
+# Position
+
+There are 4 position options available.
+
+<Canvas of={CarouselStories.Position} />
+
+# Properties
+
+<Controls of={CarouselStories.Position} />
+
+<br />
+
+# Scroll automatically
+
+Timing of scrolling to the next card/picture.
+
+<Canvas of={CarouselStories.AutoPlay} />
+
+# Properties
+
+<Controls of={CarouselStories.AutoPlay} />
+
+<br />
+
+# Arrows for switching
+
+Show the arrows for switching.
+
+<Canvas of={CarouselStories.Arrows} />
+
+# Properties
+
+<Controls of={CarouselStories.Arrows} />
