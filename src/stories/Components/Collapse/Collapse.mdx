@@ -1,0 +1,79 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
+import * as CollapseStories from "./Collapse.stories";
+
+<Meta of={CollapseStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Collapse</h1>
+
+A content area which can be collapsed and expanded.
+
+# Collapse
+
+By default, any number of panels can be expanded at a time. The first panel is expanded in this example.
+
+<Canvas of={CollapseStories.Basic} />
+
+# Properties
+
+<Controls of={CollapseStories.Basic} />
+
+# Accordian
+
+In accordion mode, only one panel can be expanded at a time.
+
+<Canvas of={CollapseStories.Accordion} />
+
+# Properties
+
+<Controls of={CollapseStories.Accordion} />
+
+# Nested panel
+
+`Collapse` is nested inside the `Collapse`.
+
+<Canvas of={CollapseStories.Nested} />
+
+# Properties
+
+<Controls of={CollapseStories.Nested} />
+
+# Borderless
+
+A borderless style of Collapse.
+
+<Canvas of={CollapseStories.Borderless} />
+
+# Properties
+
+<Controls of={CollapseStories.Borderless} />
+
+# No arrow
+
+You can hide the arrow icon by passing `showArrow={false}` to `Collapse` component.
+
+<Canvas of={CollapseStories.NoArrow} />
+
+# Properties
+
+<Controls of={CollapseStories.NoArrow} />
+
+<br />
+
+# ⚛️ Atom of Calendar
+
+- CollapseItem
+
+<br />
+
+# Collapse Item
+
+<Canvas of={CollapseStories.Item} />
+
+<Controls of={CollapseStories.Item} />
