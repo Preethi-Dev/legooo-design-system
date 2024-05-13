@@ -1,0 +1,55 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Source,
+} from "@storybook/blocks";
+import * as TagStories from "./Tag.stories";
+
+<Meta of={TagStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Tag</h1>
+
+Used for marking and categorization.
+
+# Basic
+
+Usage of basic Tag, and it could be closable and customize close button by set `closeIcon` property, will display default close button when `closeIcon` is setting to `true`
+
+<Canvas of={TagStories.Basic} />
+
+# Properties
+
+<Controls of={TagStories.Basic} />
+
+# Icon
+
+`Tag` components can contain an Icon. This is done by setting the `icon` property or placing an Icon component within the `Tag`.
+
+<Canvas of={TagStories.Icon} />
+
+# Status Tag
+
+We preset five different colors, you can set `color` property such as `success`,`processing`,`error`,`default` and `warning` to indicate specific status.
+
+<Canvas of={TagStories.StatusTag} />
+
+# Add & Remove Dynamically
+
+Generating a set of Tags by array, you can add and remove dynamically.
+
+<Canvas of={TagStories.Dynamic} />
+
+# borderless
+
+borderless Tag by toggle `$bordered`
+
+<Canvas of={TagStories.Borderless} />
+
+# Checkable
+
+`$CheckableTag` works like Checkbox, click it to toggle checked state.
+
+<Canvas of={TagStories.Checkable} />
