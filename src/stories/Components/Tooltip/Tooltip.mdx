@@ -1,0 +1,51 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Subtitle,
+  Source,
+} from "@storybook/blocks";
+import * as TooltipStories from "./Tooltip.stories";
+
+<Meta of={TooltipStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Tooltip</h1>
+
+Simple text popup box.
+
+# Basic
+
+The simplest usage.
+
+<Canvas of={TooltipStories.Basic} />
+
+# Properties
+
+<Controls of={TooltipStories.Basic} />
+
+# Placement
+
+There are 12 placement options available.
+
+<Canvas of={TooltipStories.Placement} />
+
+# Colorful Tooltip
+
+We preset a series of colorful Tooltip styles for use in different situations.
+
+<Canvas of={TooltipStories.Color} />
+
+> <Subtitle>Auto Shift</Subtitle>
+>
+> Auto adjust Popup and arrow position when Tooltip is close to the edge of the screen. <br />
+> Will be out of screen when exceed limitation.
+
+<br />
+
+# Open
+
+Instead hover, always open by default - set `open` will be `true`. By default, which is `false`
+
+<Canvas of={TooltipStories.Open} />
