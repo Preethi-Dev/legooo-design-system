@@ -1,0 +1,88 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Subtitle,
+  Source,
+} from "@storybook/blocks";
+import * as TabsStories from "./Tabs.stories";
+
+<Meta of={TabsStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Tabs</h1>
+
+Tabs make it easy to explore and switch between different views.
+
+# Basic
+
+Default activate first tab.
+
+<Canvas of={TabsStories.Basic} />
+
+# Properties
+
+<Controls of={TabsStories.Basic} />
+
+# Centered
+
+Centered tabs.
+
+<Canvas of={TabsStories.Centered} />
+
+# Properties
+
+<Controls of={TabsStories.Centered} />
+
+# Icon
+
+The Tab with Icon.
+
+<Canvas of={TabsStories.Icon} />
+
+# Properties
+
+<Controls of={TabsStories.Icon} />
+
+# Position
+
+Tab's position: `horizontal` or `vertical`. By default, Tab's position is `horizontal`
+
+<Canvas of={TabsStories.Position} />
+
+# Properties
+
+<Controls of={TabsStories.Position} />
+
+# Horizontal Slide
+
+In order to fit in more tabs, they can slide left and right (or up and down).
+
+<Canvas of={TabsStories.HorizontalSlide} />
+
+# Vertical Slide
+
+In order to fit in more tabs, they can slide up and down.
+
+<Canvas of={TabsStories.VerticalSlide} />
+
+# Extra content
+
+You can add extra actions to the right or left or even both side of Tabs.
+
+<Canvas of={TabsStories.ExtraContent} />
+
+# Properties
+
+<Controls of={TabsStories.ExtraContent} />
+
+# Size
+
+Large size tabs are usually used in page header, and small size could be used in Modal.
+
+<Canvas of={TabsStories.Size} />
+
+# Properties
+
+<Controls of={TabsStories.Size} />
