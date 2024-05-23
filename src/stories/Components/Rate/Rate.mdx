@@ -1,0 +1,78 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Subtitle,
+  Source,
+} from "@storybook/blocks";
+import * as RateStories from "./Rate.stories";
+
+<Meta of={RateStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Rate</h1>
+
+Used for rating operation on something.
+
+# Basic
+
+The simplest usage.
+
+<Canvas of={RateStories.Basic} />
+
+# Properties
+
+<Controls of={RateStories.Basic} />
+
+<br />
+<br />
+
+# Show copywriting
+
+Add copywriting in rate components.
+
+<Canvas of={RateStories.CopyWrite} />
+
+# Properties
+
+<Controls of={RateStories.CopyWrite} />
+
+<br />
+<br />
+
+# Read only
+
+Read only, can't use mouse to interact.
+
+<Canvas of={RateStories.ReadOnly} />
+
+# Properties
+
+<Controls of={RateStories.ReadOnly} />
+
+<br />
+<br />
+
+# Half star
+
+Support select half star.
+
+<Canvas of={RateStories.HalfStar} />
+
+# Properties
+
+<Controls of={RateStories.HalfStar} />
+
+<br />
+<br />
+
+# Other Character
+
+Replace the default star to other character like alphabet, digit, iconfont or even Chinese word.
+
+<Canvas of={RateStories.Custom} />
+
+# Properties
+
+<Controls of={RateStories.Custom} />
