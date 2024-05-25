@@ -1,0 +1,57 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Subtitle,
+  Source,
+} from "@storybook/blocks";
+import * as SkeletonStories from "./Skeleton.stories";
+
+<Meta of={SkeletonStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Skeleton</h1>
+
+Provide a placeholder while you wait for content to load, or to visualize content that doesn't exist yet.
+
+# Basic
+
+Simplest Skeleton usage.
+
+<Canvas of={SkeletonStories.Basic} />
+
+# Complex combination
+
+Complex combination with avatar and multiple paragraphs.
+
+<Canvas of={SkeletonStories.Complex} />
+
+# Properties
+
+<Controls of={SkeletonStories.Complex} />
+
+# Active Animation
+
+Display active animation.
+
+<Canvas of={SkeletonStories.ActiveAnimation} />
+
+# Properties
+
+<Controls of={SkeletonStories.ActiveAnimation} />
+
+# Card
+
+use Skeleton for Card as placeholder untill the content load
+
+<Canvas of={SkeletonStories.Example} />
+
+# Atoms of Skeleton
+
+- `Skeleton.SkeletonInput`
+- `Skeleton.SkeletonButton`
+- `Skeleton.SkeletonAvatar`
+- `Skeleton.SkeletonImage`
+- `Skeleton.SkeletonTitle`
+- `Skeleton.SkeletonParagraph`
