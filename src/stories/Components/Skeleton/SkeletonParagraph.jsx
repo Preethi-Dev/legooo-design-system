@@ -21,7 +21,7 @@ const ParagraphContainer = styled.div`
     `};
 `;
 
-export const SkeletonParagraph = ({ rows = 3, active }) => {
+export const SkeletonParagraph = ({ rows, active }) => {
   return (
     <Container>
       {[...new Array(rows)].map((_, index) => (
@@ -33,4 +33,8 @@ export const SkeletonParagraph = ({ rows = 3, active }) => {
       ))}
     </Container>
   );
+};
+
+SkeletonParagraph.defaultProps = {
+  rows: 3,
 };

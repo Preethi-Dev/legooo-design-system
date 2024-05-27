@@ -3,6 +3,9 @@ import Skeleton from "./Skeleton";
 export default {
   title: "Components/Skeleton",
   component: Skeleton,
+  args: {
+    active: false,
+  },
 };
 
 export const Basic = {};
@@ -59,4 +62,74 @@ export const Example = {
       </div>
     </div>
   ),
+};
+
+export const SkeletonAvatar = {
+  parameters: {
+    controls: {
+      include: ["active", "shape"],
+    },
+  },
+  argTypes: {
+    shape: {
+      control: "radio",
+      options: ["circle", "square"],
+    },
+  },
+  args: {
+    shape: "square",
+  },
+  render: (props) => <Skeleton.Avatar {...props} />,
+};
+
+export const SkeletonButton = {
+  parameters: {
+    controls: {
+      include: ["active", "block"],
+    },
+  },
+  args: {
+    shape: "square",
+    block: false,
+  },
+  render: (props) => <Skeleton.Button {...props} />,
+};
+
+export const SkeletonInput = {
+  parameters: {
+    controls: {
+      include: ["active"],
+    },
+  },
+  render: (props) => <Skeleton.Input {...props} />,
+};
+
+export const SkeletonParagraph = {
+  parameters: {
+    controls: {
+      include: ["active", "rows"],
+    },
+  },
+  args: {
+    rows: 3,
+  },
+  render: (props) => <Skeleton.Paragraph {...props} />,
+};
+
+export const SkeletonTitle = {
+  parameters: {
+    controls: {
+      include: ["active"],
+    },
+  },
+  render: (props) => <Skeleton.Title {...props} />,
+};
+
+export const SkeletonImage = {
+  parameters: {
+    controls: {
+      include: ["active"],
+    },
+  },
+  render: (props) => <Skeleton.Image {...props} />,
 };
