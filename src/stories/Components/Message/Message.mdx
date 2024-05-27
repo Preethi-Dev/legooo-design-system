@@ -1,0 +1,67 @@
+import {
+  Canvas,
+  Meta,
+  Primary,
+  Controls,
+  Stories,
+  Subtitle,
+  Source,
+} from "@storybook/blocks";
+import * as MessageStories from "./Message.stories";
+
+<Meta of={MessageStories} />
+
+<h1 style={{ fontSize: "3rem" }}>Message</h1>
+
+Display global messages as feedback in response to user operations.
+
+# Example
+
+<Canvas of={MessageStories.NormalMessage} />
+
+<Source
+  code={`<Message
+    content="This is a message"
+    type="info"
+  />`}
+/>
+
+# Basic
+
+The simplest usage.
+
+<Canvas of={MessageStories.Basic} />
+
+# Properties
+
+<Controls of={MessageStories.Basic} />
+
+# Custom Icon
+
+use custom icon by setting `icon`
+
+<Canvas of={MessageStories.Custom} />
+
+# Properties
+
+<Controls of={MessageStories.Custom} />
+
+# Custom Duration
+
+Customize message display duration from default `3` to `10` seconds
+
+<Canvas of={MessageStories.CustomDuration} />
+
+# Properties
+
+<Controls of={MessageStories.CustomDuration} />
+
+# Message with loading indicator
+
+Display a global loading indicator, which is dismissed by itself.
+
+<Canvas of={MessageStories.Loading} />
+
+# Message by Action
+
+<Canvas of={MessageStories.Example} />
