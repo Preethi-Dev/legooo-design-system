@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import { findTokenValue } from "../../../utility";
 import * as icons from "@ant-design/icons";
 import { GlobalStyle } from "../../../utility/";
+import { generateIconNames } from "./Button.helpers";
 
 const btnDisabled = css`
   border-color: ${({ theme }) =>
@@ -307,7 +308,7 @@ const BtnFlex = styled.div`
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const Button = ({ label, ...props }) => {
@@ -324,6 +325,18 @@ const Button = ({ label, ...props }) => {
       </BtnFlex>
     </StyledBtn>
   );
+};
+
+Button.defaultProps = {
+  label: "Button",
+  $type: "Default",
+  $shape: "Default",
+  $size: "Default",
+  $block: false,
+  $danger: false,
+  disabled: false,
+  $icon: false,
+  $setIcon: generateIconNames()[0],
 };
 
 Button.propTypes = {
