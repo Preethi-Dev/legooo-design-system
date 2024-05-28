@@ -21,6 +21,11 @@ const globalTypes = {
 const preview = {
   globalTypes,
   parameters: {
+    options: {
+      storySort: {
+        order: ["Tokens", "Components"],
+      },
+    },
     controls: {
       expanded: true,
       matchers: {
