@@ -2,6 +2,8 @@ import Dropdown from "./Dropdown";
 import { ButtonStories, generateIconNames } from "../Button";
 import { DropdownMenuItem } from "./DropdownMenuItem";
 import { DropdownMenu } from "./DropdownMenu";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Dropdown",
@@ -58,7 +60,7 @@ export const Basic = {
 export const DropdownItem = {
   parameters: {
     controls: {
-      exclude: ["$placement", "$theme"],
+      exclude: ["$placement"],
     },
   },
   argTypes: {
@@ -88,24 +90,21 @@ export const DropdownItem = {
     disabled: false,
   },
 
-  render: ({ label, $selected, $arrow, $icon, $setIcon, disabled }) => (
-    <DropdownMenuItem
-      label={label}
-      $selected={$selected}
-      $arrow={$arrow}
-      $icon={$icon}
-      $setIcon={$setIcon}
-      disabled={disabled}
-    />
+  render: ({ label, $selected, $arrow, $icon, $setIcon, disabled, $theme }) => (
+    <ThemeProvider theme={myThemes[$theme]}>
+      <DropdownMenuItem
+        label={label}
+        $selected={$selected}
+        $arrow={$arrow}
+        $icon={$icon}
+        $setIcon={$setIcon}
+        disabled={disabled}
+      />
+    </ThemeProvider>
   ),
 };
 
 export const Menu = {
-  parameters: {
-    controls: {
-      exclude: ["$theme"],
-    },
-  },
   argTypes: {
     /*
      * Arrow Placement
@@ -126,8 +125,10 @@ export const Menu = {
     $placement: "bottom",
     $items: menuItems,
   },
-  render: ({ $placement, $items }) => (
-    <DropdownMenu $placement={$placement} $items={$items} />
+  render: ({ $placement, $items, $theme }) => (
+    <ThemeProvider theme={myThemes[$theme]}>
+      <DropdownMenu $placement={$placement} $items={$items} />
+    </ThemeProvider>
   ),
 };
 
@@ -146,7 +147,6 @@ export const Placements = {
         "$icon",
         "$items",
         "$setIcon",
-        "$theme",
       ],
     },
   },
@@ -175,7 +175,7 @@ export const Placements = {
 export const Arrows = {
   parameters: {
     controls: {
-      exclude: ["$items", "$theme"],
+      exclude: ["$items"],
     },
   },
   argTypes: {
@@ -198,15 +198,17 @@ export const Arrows = {
     $placement: "bottom",
     $items: menuItems,
   },
-  render: ({ $placement, $items }) => (
-    <DropdownMenu $placement={$placement} $items={$items} />
+  render: ({ $placement, $items, $theme }) => (
+    <ThemeProvider theme={myThemes[$theme]}>
+      <DropdownMenu $placement={$placement} $items={$items} />
+    </ThemeProvider>
   ),
 };
 
 export const ScrollMenu = {
   parameters: {
     controls: {
-      exclude: ["$placement", "$theme"],
+      exclude: ["$placement"],
     },
   },
   argTypes: {
@@ -229,7 +231,9 @@ export const ScrollMenu = {
     $placement: "bottom",
     $items: moreMenuItems,
   },
-  render: ({ $placement, $items }) => (
-    <DropdownMenu $placement={$placement} $items={$items} />
+  render: ({ $placement, $items, $theme }) => (
+    <ThemeProvider theme={myThemes[$theme]}>
+      <DropdownMenu $placement={$placement} $items={$items} />
+    </ThemeProvider>
   ),
 };

@@ -4,6 +4,8 @@ import { StepsItemIcon } from "./StepsItemIcon";
 import { StepsTail } from "./StepsTail";
 import { generateIconNames } from "../Button";
 import { generateIndex } from "./Steps.helpers";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Steps",
@@ -112,7 +114,7 @@ export const Basic = {
 
 export const Mini = {
   parameters: {
-    controls: { exclude: ["current", "items", "$theme"] },
+    controls: { exclude: ["current", "items"] },
   },
   argTypes: {
     ...Basic.argTypes,
@@ -127,7 +129,7 @@ export const Mini = {
 export const WithIcon = {
   parameters: {
     controls: {
-      exclude: [Object.keys(Basic.argTypes), "size", "items", "$theme"].flat(),
+      exclude: [Object.keys(Basic.argTypes), "size", "items"].flat(),
     },
   },
   args: { ...Basic.args, direction: "horizontal", items: itemsWithIcon },
@@ -136,8 +138,8 @@ export const WithIcon = {
 export const Vertical = {
   parameters: {
     controls: {
-      exclude: ["$progressDot", "current", "size", "items", "$theme"],
-      include: ["direction"],
+      exclude: ["$progressDot", "current", "size", "items"],
+      include: ["direction", "$theme"],
     },
   },
   argTypes: {
@@ -148,7 +150,7 @@ export const Vertical = {
 
 export const VerticalMini = {
   parameters: {
-    controls: { exclude: ["current", "items", "$theme"] },
+    controls: { exclude: ["current", "items"] },
   },
   argTypes: {
     ...Basic.argTypes,
@@ -164,8 +166,8 @@ export const VerticalMini = {
 export const DotStyle = {
   parameters: {
     controls: {
-      exclude: ["$progressDot", "current", "size", "items", "$theme"],
-      include: ["direction"],
+      exclude: ["$progressDot", "current", "size", "items"],
+      include: ["direction", "$theme"],
     },
   },
   argTypes: {
@@ -177,7 +179,7 @@ export const DotStyle = {
 export const ErrorState = {
   parameters: {
     controls: {
-      exclude: ["current", "size", "items", "$theme"],
+      exclude: ["current", "size", "items"],
     },
   },
   argTypes: {
@@ -189,7 +191,7 @@ export const ErrorState = {
 export const SwitchStep = {
   parameters: {
     controls: {
-      exclude: ["$progressDot", "size", "items", "$theme"],
+      exclude: ["$progressDot", "size", "items"],
     },
   },
   argTypes: {
@@ -203,11 +205,6 @@ export const SwitchStep = {
 };
 
 export const Item = {
-  parameters: {
-    controls: {
-      exclude: ["$theme"],
-    },
-  },
   argTypes: {
     direction: { control: "inline-radio", options: ["vertical", "horizontal"] },
     size: { control: "inline-radio", options: ["small", "medium"] },
@@ -237,15 +234,14 @@ export const Item = {
     tail: true,
     $progressDot: true,
   },
-  render: (props) => <StepsItem {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <StepsItem {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const ItemIcon = {
-  parameters: {
-    controls: {
-      exclude: ["$theme"],
-    },
-  },
   args: {
     $status: "finished",
     size: "small",
@@ -261,13 +257,17 @@ export const ItemIcon = {
     },
   },
 
-  render: (props) => <StepsItemIcon {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <StepsItemIcon {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const Tail = {
   parameters: {
     controls: {
-      exclude: ["size", "$theme"],
+      exclude: ["size"],
     },
   },
   argTypes: {
@@ -276,5 +276,9 @@ export const Tail = {
   args: {
     direction: "vertical",
   },
-  render: (props) => <StepsTail {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <StepsTail {...props} />
+    </ThemeProvider>
+  ),
 };

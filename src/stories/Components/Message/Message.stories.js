@@ -36,7 +36,7 @@ export const Basic = {
 export const Custom = {
   parameters: {
     controls: {
-      include: ["icon"],
+      include: ["icon", "$theme"],
     },
   },
   args: {
@@ -44,7 +44,11 @@ export const Custom = {
     icon: <StopOutlined />,
     content: "Not allowed",
   },
-  render: (props) => <Atom {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Atom {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const NormalMessage = {

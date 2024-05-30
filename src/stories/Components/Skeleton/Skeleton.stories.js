@@ -1,4 +1,6 @@
+import { ThemeProvider } from "styled-components";
 import Skeleton from "./Skeleton";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Skeleton",
@@ -40,44 +42,46 @@ export const Example = {
     active: true,
   },
   render: (props) => (
-    <div
-      style={{
-        display: "flex",
-        gap: "1rem",
-        maxWidth: "20rem",
-      }}
-    >
-      <div style={{ alignSelf: "start" }}>
-        <Skeleton.Image {...props} />
-      </div>
+    <ThemeProvider theme={myThemes[props.$theme]}>
       <div
         style={{
-          width: "100%",
           display: "flex",
-          flexDirection: "column",
           gap: "1rem",
+          maxWidth: "20rem",
         }}
       >
-        <Skeleton.Paragraph {...props} />
+        <div style={{ alignSelf: "start" }}>
+          <Skeleton.Image {...props} />
+        </div>
         <div
           style={{
             width: "100%",
             display: "flex",
+            flexDirection: "column",
             gap: "1rem",
           }}
         >
-          <Skeleton.Button {...props} />
-          <Skeleton.Button {...props} />
+          <Skeleton.Paragraph {...props} />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              gap: "1rem",
+            }}
+          >
+            <Skeleton.Button {...props} />
+            <Skeleton.Button {...props} />
+          </div>
         </div>
       </div>
-    </div>
+    </ThemeProvider>
   ),
 };
 
 export const SkeletonAvatar = {
   parameters: {
     controls: {
-      include: ["active", "shape"],
+      include: ["active", "shape", "$theme"],
     },
   },
   argTypes: {
@@ -89,57 +93,81 @@ export const SkeletonAvatar = {
   args: {
     shape: "square",
   },
-  render: (props) => <Skeleton.Avatar {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Skeleton.Avatar {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const SkeletonButton = {
   parameters: {
     controls: {
-      include: ["active", "block"],
+      include: ["active", "block", "$theme"],
     },
   },
   args: {
     shape: "square",
     block: false,
   },
-  render: (props) => <Skeleton.Button {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Skeleton.Button {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const SkeletonInput = {
   parameters: {
     controls: {
-      include: ["active"],
+      include: ["active", "$theme"],
     },
   },
-  render: (props) => <Skeleton.Input {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Skeleton.Input {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const SkeletonParagraph = {
   parameters: {
     controls: {
-      include: ["active", "rows"],
+      include: ["active", "rows", "$theme"],
     },
   },
   args: {
     rows: 3,
   },
-  render: (props) => <Skeleton.Paragraph {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Skeleton.Paragraph {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const SkeletonTitle = {
   parameters: {
     controls: {
-      include: ["active"],
+      include: ["active", "$theme"],
     },
   },
-  render: (props) => <Skeleton.Title {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Skeleton.Title {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const SkeletonImage = {
   parameters: {
     controls: {
-      include: ["active"],
+      include: ["active", "$theme"],
     },
   },
-  render: (props) => <Skeleton.Image {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Skeleton.Image {...props} />
+    </ThemeProvider>
+  ),
 };

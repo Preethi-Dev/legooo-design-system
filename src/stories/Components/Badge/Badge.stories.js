@@ -2,6 +2,8 @@ import Badge from "./Badge";
 import { Dot } from "./Dot";
 import { BadgeExample } from "./BadgeExample";
 import { NotificationOutlined } from "@ant-design/icons";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Badge",
@@ -44,9 +46,11 @@ export const Standalone = {
     $status: "success",
   },
   render: (props) => (
-    <div style={{ display: "inline-flex", position: "relative" }}>
-      <Dot {...props} />
-    </div>
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <div style={{ display: "inline-flex", position: "relative" }}>
+        <Dot {...props} />
+      </div>
+    </ThemeProvider>
   ),
 };
 
