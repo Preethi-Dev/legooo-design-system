@@ -19,7 +19,7 @@ const globalTypes = {
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
-  globalTypes,
+  // globalTypes,
   parameters: {
     options: {
       storySort: {
@@ -34,16 +34,25 @@ const preview = {
       },
     },
   },
-  decorators: [
-    (Story, context) => {
-      const theme = myThemes[context.globals.themes];
-      return (
-        <ThemeProvider theme={theme}>
-          <Story />
-        </ThemeProvider>
-      );
+  // decorators: [
+  //   (Story, context) => {
+  //     const theme = myThemes[context.globals.themes];
+  //     return (
+  //       <ThemeProvider theme={theme}>
+  //         <Story />
+  //       </ThemeProvider>
+  //     );
+  //   },
+  // ],
+  argTypes: {
+    $theme: {
+      control: "inline-radio",
+      options: ["Light", "Dark"],
     },
-  ],
+  },
+  args: {
+    $theme: "Light",
+  },
 };
 
 export default preview;
