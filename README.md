@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Legooo - React Design System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Legooo is a comprehensive React component library designed to facilitate the creation of complex user interfaces following a design system approach. With Legooo, you can easily implement a wide range of UI components to ensure consistency and efficiency across your React projects.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Components](#components)
+4. [Customization](#customization)
+5. [Contributing](#contributing)
+6. [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can install Legooo via npm using the following command:
 
-### `npm test`
+```js
+npm i legooo
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+To use Legooo components in your React application, import the desired component(s) and use them in your JSX markup. Here's an example of how you can use the `Button` and `Avatar` components:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```jsx
+import React from "react";
+import { Button, Avatar } from "legooo";
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+function App() {
+  return (
+    <div>
+      <Button />
+      <Avatar size="medium" type="image" />
+    </div>
+  );
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export default App;
+```
 
-### `npm run eject`
+## Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Legooo provides a wide range of components to cover various UI requirements. Here's a list of components included in the library:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Avatar: Component for displaying user avatars.
+2. Badge: Component for indicating status or count.
+3. Breadcrumb: Component for navigating hierarchical data.
+4. Button: Component for user interaction.
+5. Calendar: Component for displaying date and time.
+6. Card: Component for displaying content in a structured manner.
+7. Carousel: Component for displaying a series of content in a rotating manner.
+8. Collapse: Component for hiding and revealing content.
+9. Drawer: Component for sliding in and out content.
+10. Dropdown: Component for selecting options from a list.
+11. Image: Component for displaying images.
+12. Message: Component for displaying notifications or messages.
+13. Pagination: Component for navigating through pages of content.
+14. Rate: Component for rating items.
+15. Skeleton: Component for displaying placeholders while content is loading.
+16. Steps: Component for guiding users through a series of steps.
+17. Tabs: Component for organizing content into tabs.
+18. Tag: Component for labeling or categorizing items.
+19. Tooltip: Component for displaying additional information on hover.
+20. Tree: Component for displaying hierarchical data in a tree structure.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    Each component comes with its own set of props and customization options. Please refer to the individual component documentation for more details.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Customization
 
-## Learn More
+Legooo components are highly customizable to fit your specific design requirements. You can override default styles or extend component functionality as needed. Refer to the documentation of each component for customization options and guidelines.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contributing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Contributions to Legooo are welcome! If you find any bugs, have feature requests, or want to contribute code, please check out our GitHub repository and follow the contribution guidelines.
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Legooo is licensed under the MIT License, which means you are free to use, modify, and distribute the library for both personal and commercial purposes.
