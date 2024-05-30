@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { TooltipInner } from "./TooltipInner";
 import { generateTooltipPosition } from "./Toolitip.helpers";
 import { useRef } from "react";
+import * as myThemes from "../../../tokens";
 
 const TooltipContainer = styled.div`
   display: inline-flex;
@@ -20,7 +21,7 @@ const TooltipContent = styled.div`
   ${({ $placement, $rect }) => generateTooltipPosition($placement, $rect)}
 `;
 
-const Tooltip = ({ title, placement, color, open, children }) => {
+const Tooltip = ({ title, placement, color, open, children, $theme }) => {
   const [isShow, setIsShow] = useState(open || false);
   const [Rect, setRect] = useState(null);
   const tooltipHolderRef = useRef(null);
@@ -40,26 +41,28 @@ const Tooltip = ({ title, placement, color, open, children }) => {
   };
 
   return (
-    <TooltipContainer>
-      {Rect && isShow && (
-        <TooltipContent $placement={placement} $rect={Rect}>
-          <TooltipInner
-            title={title}
-            placement={placement}
-            color={color}
-            $rect={Rect}
-          />
-        </TooltipContent>
-      )}
+    <ThemeProvider theme={myThemes[$theme]}>
+      <TooltipContainer>
+        {Rect && isShow && (
+          <TooltipContent $placement={placement} $rect={Rect}>
+            <TooltipInner
+              title={title}
+              placement={placement}
+              color={color}
+              $rect={Rect}
+            />
+          </TooltipContent>
+        )}
 
-      <TooltipHolder
-        ref={tooltipHolderRef}
-        onMouseEnter={(e) => !open && handleMouseEnter(e)}
-        onMouseLeave={(e) => !open && handleMouseLeave(e)}
-      >
-        {children}
-      </TooltipHolder>
-    </TooltipContainer>
+        <TooltipHolder
+          ref={tooltipHolderRef}
+          onMouseEnter={(e) => !open && handleMouseEnter(e)}
+          onMouseLeave={(e) => !open && handleMouseLeave(e)}
+        >
+          {children}
+        </TooltipHolder>
+      </TooltipContainer>
+    </ThemeProvider>
   );
 };
 
@@ -68,6 +71,7 @@ Tooltip.defaultProps = {
   placement: "bottom",
   color: "black",
   open: false,
+  $theme: "Light",
 };
 
 Tooltip.propTypes = {
@@ -100,6 +104,10 @@ Tooltip.propTypes = {
    * Whether the floating tooltip card is open or not while page load
    */
   open: PropTypes.bool,
+  /**
+   * Toggle between Light and Dark themes for customizability. defaulting to `Light`.
+   */
+  $theme: PropTypes.oneOf(["Light", "Dark"]),
 };
 
 export default Tooltip;

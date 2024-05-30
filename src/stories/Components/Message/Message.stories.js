@@ -2,6 +2,8 @@ import { StopOutlined } from "@ant-design/icons";
 import { Atom } from "./Atom";
 import Message from "./Message";
 import { StackMessages } from "./StackMessages";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Message",
@@ -24,7 +26,11 @@ export const Basic = {
       exclude: ["duration"],
     },
   },
-  render: (props) => <Atom {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Atom {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const Custom = {
@@ -89,9 +95,9 @@ export const Loading = {
 };
 
 export const Example = {
-  render: () => (
+  render: ({ $theme }) => (
     <div style={{ height: "20vh" }}>
-      <StackMessages />
+      <StackMessages $theme={$theme} />
     </div>
   ),
 };

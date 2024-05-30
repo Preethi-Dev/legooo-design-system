@@ -10,7 +10,7 @@ export default {
 export const Basic = {
   parameters: {
     controls: {
-      include: ["title", "size", "closable"],
+      include: ["title", "size", "closable", "$theme"],
     },
   },
   argTypes: {
@@ -48,6 +48,7 @@ export const Basic = {
             $size="Default"
             $type="Primary"
             label="Open"
+            $theme={props.$theme}
           />
         </div>
         <Drawer open={open} onClose={onClose} {...props}>

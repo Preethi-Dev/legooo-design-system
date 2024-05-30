@@ -2,6 +2,8 @@ import { FileOutlined } from "@ant-design/icons";
 import Tree from "./Tree";
 import { TreeNode } from "./TreeNode";
 import { TreeSwitcher } from "./TreeSwitcher";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Tree",
@@ -215,7 +217,11 @@ export const Switcher = {
     expanded: false,
   },
 
-  render: (props) => <TreeSwitcher {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <TreeSwitcher {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const Node = {
@@ -237,5 +243,9 @@ export const Node = {
     showIcon: true,
     icon: <FileOutlined />,
   },
-  render: (props) => <TreeNode {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <TreeNode {...props} />
+    </ThemeProvider>
+  ),
 };

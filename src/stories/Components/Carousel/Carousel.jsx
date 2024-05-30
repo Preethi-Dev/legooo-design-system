@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled, { ThemeProvider, css } from "styled-components";
 import { GlobalStyle, findTokenValue } from "../../../utility";
 import { Slick } from "./Slick";
 import {
@@ -13,6 +13,7 @@ import {
   generatePrevArrowPosition,
   generateSlickPosition,
 } from "./Carousel.helpers";
+import * as myThemes from "../../../tokens";
 
 const CarouselContainer = styled.div`
   display: flex;
@@ -69,7 +70,14 @@ const NextBtn = styled.div`
   ${({ $dotPosition }) => generateNextArrowPosition($dotPosition)}
 `;
 
-const Carousel = ({ arrows, autoPlay, $dotPosition, $dimension, children }) => {
+const Carousel = ({
+  arrows,
+  autoPlay,
+  $dotPosition,
+  $dimension,
+  children,
+  $theme,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionSec, setTransitionSec] = useState(1);
 
@@ -103,48 +111,50 @@ const Carousel = ({ arrows, autoPlay, $dotPosition, $dimension, children }) => {
   });
 
   return (
-    <CarouselContainer $dotPosition={$dotPosition} $dimension={$dimension}>
-      <GlobalStyle />
-      <>
-        {children.map((child, index) => (
-          <CarouselItem
-            key={index}
-            style={{
-              transform: ["Left", "Right"].includes($dotPosition)
-                ? `translateY(-${currentIndex * parseInt(height)}px)`
-                : `translateX(-${currentIndex * 100}%)`,
-            }}
-            $transitionSec={transitionSec}
-            $dotPosition={$dotPosition}
-            $dimension={$dimension}
-          >
-            {child}
-          </CarouselItem>
-        ))}
-        <SlickContainer $dotPosition={$dotPosition}>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <CarouselContainer $dotPosition={$dotPosition} $dimension={$dimension}>
+        <GlobalStyle />
+        <>
           {children.map((child, index) => (
-            <div onClick={() => handleDot(index)} key={index}>
-              <Slick
-                $active={currentIndex === index}
-                $dotPosition={$dotPosition}
-              />
-            </div>
+            <CarouselItem
+              key={index}
+              style={{
+                transform: ["Left", "Right"].includes($dotPosition)
+                  ? `translateY(-${currentIndex * parseInt(height)}px)`
+                  : `translateX(-${currentIndex * 100}%)`,
+              }}
+              $transitionSec={transitionSec}
+              $dotPosition={$dotPosition}
+              $dimension={$dimension}
+            >
+              {child}
+            </CarouselItem>
           ))}
-        </SlickContainer>
-        {arrows && currentIndex !== 0 && (
-          <PrevBtn onClick={() => prev()} $dotPosition={$dotPosition}>
-            {["Top", "Bottom"].includes($dotPosition) && <LeftOutlined />}
-            {["Left", "Right"].includes($dotPosition) && <UpOutlined />}
-          </PrevBtn>
-        )}
-        {arrows && currentIndex !== children.length - 1 && (
-          <NextBtn onClick={() => next()} $dotPosition={$dotPosition}>
-            {["Top", "Bottom"].includes($dotPosition) && <RightOutlined />}
-            {["Left", "Right"].includes($dotPosition) && <DownOutlined />}
-          </NextBtn>
-        )}
-      </>
-    </CarouselContainer>
+          <SlickContainer $dotPosition={$dotPosition}>
+            {children.map((child, index) => (
+              <div onClick={() => handleDot(index)} key={index}>
+                <Slick
+                  $active={currentIndex === index}
+                  $dotPosition={$dotPosition}
+                />
+              </div>
+            ))}
+          </SlickContainer>
+          {arrows && currentIndex !== 0 && (
+            <PrevBtn onClick={() => prev()} $dotPosition={$dotPosition}>
+              {["Top", "Bottom"].includes($dotPosition) && <LeftOutlined />}
+              {["Left", "Right"].includes($dotPosition) && <UpOutlined />}
+            </PrevBtn>
+          )}
+          {arrows && currentIndex !== children.length - 1 && (
+            <NextBtn onClick={() => next()} $dotPosition={$dotPosition}>
+              {["Top", "Bottom"].includes($dotPosition) && <RightOutlined />}
+              {["Left", "Right"].includes($dotPosition) && <DownOutlined />}
+            </NextBtn>
+          )}
+        </>
+      </CarouselContainer>
+    </ThemeProvider>
   );
 };
 
@@ -153,5 +163,6 @@ Carousel.defaultProps = {
   $dotPosition: "Bottom",
   autoPlay: false,
   $dimension: ["800px", "400px"],
+  $theme: "Light",
 };
 export default Carousel;

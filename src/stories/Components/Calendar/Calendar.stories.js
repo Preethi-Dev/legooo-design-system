@@ -1,5 +1,7 @@
+import { ThemeProvider } from "styled-components";
 import Calendar from "./Calendar";
 import { DataCell } from "./DataCell";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Calendar",
@@ -32,5 +34,9 @@ export const Cell = {
     $selected: false,
     $day: 10,
   },
-  render: (props) => <DataCell {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <DataCell {...props} />
+    </ThemeProvider>
+  ),
 };

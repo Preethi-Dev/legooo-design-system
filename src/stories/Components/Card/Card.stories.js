@@ -8,6 +8,8 @@ import { CardHead } from "./CardHead";
 import { CardActions } from "./CardActions";
 import { Meta } from "./Meta";
 import { CARD_IMG_URL } from "./Card.helpers";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Card",
@@ -20,8 +22,13 @@ export default {
 };
 
 export const BasicCard = {
-  render: () => (
-    <Card $title="Default size card" $extra={<a href="#">More</a>} $bordered>
+  render: (props) => (
+    <Card
+      $title="Default size card"
+      $extra={<a href="#">More</a>}
+      $bordered
+      {...props}
+    >
       <p>Card content</p>
       <p>Card content</p>
       <p>Card content</p>
@@ -30,8 +37,8 @@ export const BasicCard = {
 };
 
 export const SimpleCard = {
-  render: () => (
-    <Card $bordered>
+  render: (props) => (
+    <Card $bordered {...props}>
       <p>Card content</p>
       <p>Card content</p>
     </Card>
@@ -139,7 +146,11 @@ export const Head = {
     $title: "Card Title",
     $extra: <a href="#">More</a>,
   },
-  render: (props) => <CardHead {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <CardHead {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const Actions = {
@@ -150,7 +161,11 @@ export const Actions = {
       <EllipsisOutlined key="ellipsis" />,
     ],
   },
-  render: (props) => <CardActions {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <CardActions {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const Content = {
@@ -158,5 +173,9 @@ export const Content = {
     title: "Europe Street beat",
     description: "www.instagram.com",
   },
-  render: (props) => <Meta {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Meta {...props} />
+    </ThemeProvider>
+  ),
 };

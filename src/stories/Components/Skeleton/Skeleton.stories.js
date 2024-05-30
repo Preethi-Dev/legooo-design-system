@@ -20,12 +20,22 @@ export const Complex = {
 };
 
 export const ActiveAnimation = {
+  parameters: {
+    controls: {
+      exclude: ["$theme"],
+    },
+  },
   args: {
     active: true,
   },
 };
 
 export const Example = {
+  parameters: {
+    controls: {
+      exclude: ["$theme"],
+    },
+  },
   args: {
     active: true,
   },

@@ -1,9 +1,10 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, { ThemeProvider, css } from "styled-components";
 import * as Icons from "@ant-design/icons";
 import { AVATAR_IMG_URL } from "./Avatar.constants";
 import { generateSize, generateTextSize } from "./Avatar.helpers";
 import { GlobalStyle } from "../../../utility";
+import * as myThemes from "../../../tokens";
 
 const AvatarIntext = css`
   background: none;
@@ -31,23 +32,24 @@ const AvatarContainer = styled.div`
 `;
 
 const Avatar = (props) => {
-  const { size, shape, badge, children, $icon, $text } = props;
+  const { size, shape, badge, children, $icon, $text, $theme } = props;
   const Icon = Icons[$icon];
   const content = $text ? $text : children;
 
   return (
-    <>
+    <ThemeProvider theme={myThemes[$theme]}>
       <GlobalStyle />
       <AvatarContainer {...props}>
         {$icon ? <Icon /> : content && content.charAt(0).toUpperCase()}
       </AvatarContainer>
-    </>
+    </ThemeProvider>
   );
 };
 
 Avatar.defaultProps = {
   shape: "circle",
   src: AVATAR_IMG_URL,
+  $theme: "Light",
 };
 
 export default Avatar;

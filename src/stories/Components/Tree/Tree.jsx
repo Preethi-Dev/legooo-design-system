@@ -3,25 +3,30 @@ import PropTypes, { string } from "prop-types";
 import { GlobalStyle } from "../../../utility";
 import { Node } from "./Node";
 import { nanoid } from "nanoid";
+import * as myThemes from "../../../tokens";
+import { ThemeProvider } from "styled-components";
 
 const Tree = (props) => {
-  const { treeData, defaultExpandedKeys, switcherIcon, showIcon } = props;
+  const { treeData, defaultExpandedKeys, switcherIcon, showIcon, $theme } =
+    props;
   return (
-    <div id="container">
-      <GlobalStyle />
-      {treeData.map(
-        (data) =>
-          data && (
-            <Node
-              data={data}
-              defaultExpandedKeys={defaultExpandedKeys}
-              switcherIcon={switcherIcon}
-              showIcon={showIcon}
-              key={nanoid()}
-            />
-          )
-      )}
-    </div>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <div id="container">
+        <GlobalStyle />
+        {treeData.map(
+          (data) =>
+            data && (
+              <Node
+                data={data}
+                defaultExpandedKeys={defaultExpandedKeys}
+                switcherIcon={switcherIcon}
+                showIcon={showIcon}
+                key={nanoid()}
+              />
+            )
+        )}
+      </div>
+    </ThemeProvider>
   );
 };
 
@@ -42,6 +47,10 @@ Tree.propTypes = {
    * Customize collapse/expand icon of tree node
    */
   switcherIcon: PropTypes.oneOf(["square", "cheveron", "caret"]),
+  /**
+   * Toggle between Light and Dark themes for customizability. defaulting to `Light`.
+   */
+  $theme: PropTypes.oneOf(["Light", "Dark"]),
 };
 
 Tree.defaultProps = {
@@ -49,6 +58,7 @@ Tree.defaultProps = {
   defaultExpandedKeys: [],
   switcherIcon: "caret",
   showIcon: false,
+  $theme: "Light",
 };
 
 export default Tree;

@@ -6,7 +6,8 @@ import { SkeletonImage } from "./SkeletonImage";
 import { SkeletonButton } from "./SkeletonButton";
 import { SkeletonTitle } from "./SkeletonTitle";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 const Container = styled.div`
   display: flex;
@@ -18,18 +19,20 @@ const Children = styled.div`
 `;
 
 const Skeleton = (props) => {
-  const { paragraph, avatar, active } = props;
+  const { paragraph, avatar, active, $theme } = props;
   return (
-    <Container>
-      {avatar && <SkeletonAvatar active={active} />}
-      <Children>
-        <SkeletonTitle active={active} />
-        <SkeletonParagraph
-          rows={paragraph && paragraph.rows ? paragraph.rows : 3}
-          active={active}
-        />
-      </Children>
-    </Container>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <Container>
+        {avatar && <SkeletonAvatar active={active} />}
+        <Children>
+          <SkeletonTitle active={active} />
+          <SkeletonParagraph
+            rows={paragraph && paragraph.rows ? paragraph.rows : 3}
+            active={active}
+          />
+        </Children>
+      </Container>
+    </ThemeProvider>
   );
 };
 

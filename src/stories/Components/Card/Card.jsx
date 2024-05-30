@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { CardHead } from "./CardHead";
 import { CardActions } from "./CardActions";
 import { GlobalStyle, findTokenValue } from "../../../utility";
+import * as myThemes from "../../../tokens";
 
 const CardContainer = styled.div`
   display: flex;
@@ -42,25 +43,29 @@ const Card = (props) => {
     $setHead,
     $size,
     children,
+    $theme,
   } = props;
   const isActions = $setActions || $actions ? true : false;
   const isHead = $setHead || $title || $extra ? true : false;
   return (
-    <CardContainer $bordered={$bordered}>
-      <GlobalStyle />
-      {isHead && <CardHead $title={$title} $extra={$extra} $size={$size} />}
-      {$cover && $cover}
-      <Content $isHead={isHead} $isActions={isActions} $size={$size}>
-        {children}
-      </Content>
-      {isActions && <CardActions $actions={$actions} />}
-    </CardContainer>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <CardContainer $bordered={$bordered}>
+        <GlobalStyle />
+        {isHead && <CardHead $title={$title} $extra={$extra} $size={$size} />}
+        {$cover && $cover}
+        <Content $isHead={isHead} $isActions={isActions} $size={$size}>
+          {children}
+        </Content>
+        {isActions && <CardActions $actions={$actions} />}
+      </CardContainer>
+    </ThemeProvider>
   );
 };
 
 Card.defaultProps = {
   $size: "default",
   $bordered: true,
+  $theme: "Light",
 };
 
 export default Card;

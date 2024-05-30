@@ -24,7 +24,7 @@ const Input = styled.input`
   color: ${({ theme }) => findTokenValue(theme["Tag-colorTextHeading"], theme)};
 `;
 
-export const TagGenerator = () => {
+export const TagGenerator = ({ $theme = "Light" }) => {
   const [turnInput, setTurnInput] = useState(false);
   const [tagGroup, setTagGroup] = useState([]);
 
@@ -44,13 +44,13 @@ export const TagGenerator = () => {
   return (
     <TagGeneratorContainer>
       <TagGroup>
-        <Tag closeIcon $bordered color="default">
+        <Tag closeIcon $bordered $theme={$theme} color="default">
           Tag 1
         </Tag>
-        <Tag closeIcon $bordered color="default">
+        <Tag closeIcon $bordered $theme={$theme} color="default">
           Tag 2
         </Tag>
-        <Tag closeIcon $bordered color="default">
+        <Tag closeIcon $bordered $theme={$theme} color="default">
           Tag 3
         </Tag>
         {tagGroup.map((tag) => (

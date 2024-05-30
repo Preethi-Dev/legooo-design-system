@@ -1,6 +1,8 @@
 import { SmileOutlined } from "@ant-design/icons";
 import Rate from "./Rate";
 import { RateStar } from "./RateStar";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Rate",
@@ -60,17 +62,26 @@ export const HalfStar = {
 export const Custom = {
   parameters: {
     controls: {
-      include: ["character"],
+      include: ["character", "$theme"],
     },
   },
-  render: () => (
+  render: (props) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <Rate character={"A"} value={2} />
-      <Rate character={<SmileOutlined />} value={3} />
+      <Rate character={"A"} value={2} $theme={props.$theme} />
+      <Rate character={<SmileOutlined />} value={3} $theme={props.$theme} />
     </div>
   ),
 };
 
 export const Star = {
-  render: () => <RateStar />,
+  parameters: {
+    controls: {
+      include: ["character"],
+    },
+  },
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <RateStar />
+    </ThemeProvider>
+  ),
 };

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import PropTypes, { node, number, string } from "prop-types";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { generateStarByCount } from "./Rate.helpers";
 import { findTokenValue } from "../../../utility";
 import { nanoid } from "nanoid";
 import { RateStar } from "./RateStar";
 import { HalfRateStar } from "./HalfRateStar";
 import Tooltip from "../Tooltip";
+import * as myThemes from "../../../tokens";
 
 export const RateContainer = styled.div`
   font-size: 1.25rem;
@@ -38,6 +39,7 @@ const Rate = ({
   allowHalf,
   tooltips,
   disabled,
+  $theme,
 }) => {
   const [currentStar, setcurrentStar] = useState(value);
   const [tempCurrentStar, setTempCurrentStar] = useState(currentStar);
@@ -61,42 +63,46 @@ const Rate = ({
     }
   };
 
-  return allowHalf ? (
-    <HalfRateStar
-      count={count}
-      character={character}
-      disabled={disabled}
-      value={value}
-    />
-  ) : (
-    <RateContainer>
-      {starCounts.map((star, index) =>
-        tooltips && tooltips.length === starCounts.length ? (
-          <Tooltip placement="top" title={tooltips[index]} key={nanoid()}>
-            <RateStarContainer
-              onMouseEnter={(e) => handleMouseEnter(e, star)}
-              onMouseLeave={handleMouseLeave}
-              onClick={(e) => handleClick(e, star)}
-              $currentStar={tempCurrentStar}
-              $star={star}
-            >
-              <RateStar character={character} />
-            </RateStarContainer>
-          </Tooltip>
-        ) : (
-          <RateStarContainer
-            onMouseEnter={(e) => handleMouseEnter(e, star)}
-            onMouseLeave={handleMouseLeave}
-            onClick={(e) => handleClick(e, star)}
-            key={nanoid()}
-            $currentStar={tempCurrentStar}
-            $star={star}
-          >
-            <RateStar character={character} />
-          </RateStarContainer>
-        )
+  return (
+    <ThemeProvider theme={myThemes[$theme]}>
+      {allowHalf ? (
+        <HalfRateStar
+          count={count}
+          character={character}
+          disabled={disabled}
+          value={value}
+        />
+      ) : (
+        <RateContainer>
+          {starCounts.map((star, index) =>
+            tooltips && tooltips.length === starCounts.length ? (
+              <Tooltip placement="top" title={tooltips[index]} key={nanoid()}>
+                <RateStarContainer
+                  onMouseEnter={(e) => handleMouseEnter(e, star)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={(e) => handleClick(e, star)}
+                  $currentStar={tempCurrentStar}
+                  $star={star}
+                >
+                  <RateStar character={character} />
+                </RateStarContainer>
+              </Tooltip>
+            ) : (
+              <RateStarContainer
+                onMouseEnter={(e) => handleMouseEnter(e, star)}
+                onMouseLeave={handleMouseLeave}
+                onClick={(e) => handleClick(e, star)}
+                key={nanoid()}
+                $currentStar={tempCurrentStar}
+                $star={star}
+              >
+                <RateStar character={character} />
+              </RateStarContainer>
+            )
+          )}
+        </RateContainer>
       )}
-    </RateContainer>
+    </ThemeProvider>
   );
 };
 
@@ -104,6 +110,7 @@ Rate.defaultProps = {
   allowHalf: false,
   tooltips: [],
   disabled: false,
+  $theme: "Light",
 };
 
 Rate.propTypes = {
@@ -131,6 +138,10 @@ Rate.propTypes = {
    * If read only, unable to interact
    */
   disabled: PropTypes.bool,
+  /**
+   * Toggle between Light and Dark themes for customizability. defaulting to `Light`.
+   */
+  $theme: PropTypes.oneOf(["Light", "Dark"]),
 };
 
 export default Rate;

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { ThemeProvider, css, keyframes } from "styled-components";
 import { GlobalStyle, findTokenValue } from "../../../utility";
 import PropTypes from "prop-types";
 import {
   generateColorTokenByType,
   generateIconByType,
 } from "./Message.helpers";
+import * as myThemes from "../../../tokens";
 
 const slideInTop = keyframes`
   0% {
@@ -61,7 +62,7 @@ const MessageContainer = styled.div`
   }
 `;
 
-const Message = ({ content, icon, type = "info", duration = 3 }) => {
+const Message = ({ content, icon, type = "info", duration = 3, $theme }) => {
   const [showMessage, setShowMessage] = useState(true);
 
   useEffect(() => {
@@ -73,13 +74,15 @@ const Message = ({ content, icon, type = "info", duration = 3 }) => {
   }, []);
 
   return (
-    <Container>
-      <MessageContainer $type={type} $showMessage={showMessage}>
-        <GlobalStyle />
-        {icon ? icon : generateIconByType(type)}
-        {content && content}
-      </MessageContainer>
-    </Container>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <Container>
+        <MessageContainer $type={type} $showMessage={showMessage}>
+          <GlobalStyle />
+          {icon ? icon : generateIconByType(type)}
+          {content && content}
+        </MessageContainer>
+      </Container>
+    </ThemeProvider>
   );
 };
 
@@ -87,6 +90,7 @@ Message.defaultProps = {
   content: "This is a Message",
   type: "info",
   duration: 3,
+  $theme: "Light",
 };
 
 Message.propTypes = {
@@ -106,6 +110,10 @@ Message.propTypes = {
    * Time(seconds) before auto-dismiss
    */
   duration: PropTypes.number,
+  /**
+   * Toggle between Light and Dark themes for customizability. defaulting to `Light`.
+   */
+  $theme: PropTypes.oneOf(["Light", "Dark"]),
 };
 
 export default Message;

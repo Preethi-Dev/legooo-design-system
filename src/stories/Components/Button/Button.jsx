@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled, { ThemeProvider, css } from "styled-components";
 import { findTokenValue } from "../../../utility";
 import * as icons from "@ant-design/icons";
 import { GlobalStyle } from "../../../utility/";
 import { generateIconNames } from "./Button.helpers";
+import * as myThemes from "../../../tokens";
 
 const btnDisabled = css`
   border-color: ${({ theme }) =>
@@ -311,19 +312,21 @@ const BtnFlex = styled.div`
   justify-content: center;
 `;
 
-const Button = ({ label, ...props }) => {
+const Button = ({ label, $theme, ...props }) => {
   const iconName = props.$setIcon;
   const Icon = icons[iconName];
   const DropDownIcon = icons["DownOutlined"];
   return (
-    <StyledBtn {...props} as={props.$type === "Link" ? "a" : "button"}>
-      <GlobalStyle />
-      <BtnFlex>
-        {props.$icon && Icon && <Icon />}
-        {label}
-        {props.$dropdown && <DropDownIcon />}
-      </BtnFlex>
-    </StyledBtn>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <StyledBtn {...props} as={props.$type === "Link" ? "a" : "button"}>
+        <GlobalStyle />
+        <BtnFlex>
+          {props.$icon && Icon && <Icon />}
+          {label}
+          {props.$dropdown && <DropDownIcon />}
+        </BtnFlex>
+      </StyledBtn>
+    </ThemeProvider>
   );
 };
 
@@ -337,6 +340,7 @@ Button.defaultProps = {
   disabled: false,
   $icon: false,
   $setIcon: generateIconNames()[0],
+  $theme: "Light",
 };
 
 Button.propTypes = {
@@ -377,6 +381,10 @@ Button.propTypes = {
    * Set the icon component of button
    */
   $setIcon: PropTypes.string,
+  /**
+   * Toggle between Light and Dark themes for customizability. defaulting to `Light`.
+   */
+  $theme: PropTypes.oneOf(["Light", "Dark"]),
 };
 
 export default Button;

@@ -13,6 +13,8 @@ import {
 import Tag from "./Tag";
 import { TagGenerator } from "./TagGenerator";
 import { TagPlus } from "./TagPlus";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Tag",
@@ -42,7 +44,11 @@ export const Basic = {
 };
 
 export const AddTag = {
-  render: () => <TagPlus />,
+  render: ({ $theme }) => (
+    <ThemeProvider theme={myThemes[$theme]}>
+      <TagPlus />
+    </ThemeProvider>
+  ),
 };
 
 export const StatusTag = {
@@ -126,5 +132,9 @@ export const Checkable = {
 };
 
 export const Dynamic = {
-  render: () => <TagGenerator />,
+  render: ({ $theme }) => (
+    <ThemeProvider theme={myThemes[$theme]}>
+      <TagGenerator $theme={$theme} />
+    </ThemeProvider>
+  ),
 };

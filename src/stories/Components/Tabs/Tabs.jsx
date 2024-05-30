@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import { Tab } from "./Tab";
 import { findTokenValue } from "../../../utility";
@@ -9,6 +9,7 @@ import {
   findTabKeyByLabel,
   isExceededContent,
 } from "./Tabs.helpers";
+import * as myThemes from "../../../tokens";
 
 const Container = styled.div`
   display: flex;
@@ -67,6 +68,7 @@ const TabContent = styled.div`
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
+  color: ${({ theme }) => findTokenValue(theme["Tabs-colorText"], theme)};
 `;
 
 const Tabs = ({
@@ -76,6 +78,7 @@ const Tabs = ({
   tabBarExtraContent,
   centered,
   size,
+  $theme,
 }) => {
   const [rect, setRect] = useState(null);
   const [parentRect, setParentRect] = useState(null);
@@ -105,118 +108,122 @@ const Tabs = ({
   };
 
   return (
-    <Container $tabPosition={tabPosition}>
-      <TabsWrapper $tabPosition={tabPosition} ref={tabsWrapperRef}>
-        <TabsContainer
-          ref={tabsContainerRef}
-          onClick={handleClick}
-          $tabPosition={tabPosition}
-          $items={items}
-        >
-          {tabBarExtraContent && tabBarExtraContent.left && (
-            <div style={{ alignSelf: "center" }}>{tabBarExtraContent.left}</div>
-          )}
-
-          {items &&
-            items.map((item, index) =>
-              item.key === activeKey ? (
-                <div
-                  key={nanoid()}
-                  ref={activeTabRef}
-                  style={{
-                    minWidth: "max-content",
-                    marginLeft:
-                      centered &&
-                      tabPosition === "horizontal" &&
-                      index === 0 &&
-                      "auto",
-                    marginRight:
-                      centered &&
-                      tabPosition === "horizontal" &&
-                      items.length - 1 === index &&
-                      "auto",
-                    marginTop:
-                      centered &&
-                      tabPosition === "vertical" &&
-                      index === 0 &&
-                      "auto",
-                    marginBottom:
-                      centered &&
-                      tabPosition === "vertical" &&
-                      items.length - 1 === index &&
-                      "auto",
-                  }}
-                >
-                  <Tab
-                    label={item.label}
-                    selected={item.key === activeKey}
-                    icon={item.icon}
-                    size={size}
-                  />
-                </div>
-              ) : (
-                <div
-                  key={nanoid()}
-                  style={{
-                    minWidth: "max-content",
-                    marginLeft:
-                      centered &&
-                      tabPosition === "horizontal" &&
-                      index === 0 &&
-                      "auto",
-                    marginRight:
-                      centered &&
-                      tabPosition === "horizontal" &&
-                      items.length - 1 === index &&
-                      "auto",
-                    marginTop:
-                      centered &&
-                      tabPosition === "vertical" &&
-                      index === 0 &&
-                      "auto",
-                    marginBottom:
-                      centered &&
-                      tabPosition === "vertical" &&
-                      items.length - 1 === index &&
-                      "auto",
-                  }}
-                >
-                  <Tab
-                    label={item.label}
-                    selected={item.key === activeKey}
-                    icon={item.icon}
-                    size={size}
-                  />
-                </div>
-              )
+    <ThemeProvider theme={myThemes[$theme]}>
+      <Container $tabPosition={tabPosition}>
+        <TabsWrapper $tabPosition={tabPosition} ref={tabsWrapperRef}>
+          <TabsContainer
+            ref={tabsContainerRef}
+            onClick={handleClick}
+            $tabPosition={tabPosition}
+            $items={items}
+          >
+            {tabBarExtraContent && tabBarExtraContent.left && (
+              <div style={{ alignSelf: "center" }}>
+                {tabBarExtraContent.left}
+              </div>
             )}
 
-          {tabBarExtraContent && tabBarExtraContent.right && (
-            <div
-              style={{ marginLeft: !centered && "auto", alignSelf: "center" }}
-            >
-              {tabBarExtraContent.right}
-            </div>
+            {items &&
+              items.map((item, index) =>
+                item.key === activeKey ? (
+                  <div
+                    key={nanoid()}
+                    ref={activeTabRef}
+                    style={{
+                      minWidth: "max-content",
+                      marginLeft:
+                        centered &&
+                        tabPosition === "horizontal" &&
+                        index === 0 &&
+                        "auto",
+                      marginRight:
+                        centered &&
+                        tabPosition === "horizontal" &&
+                        items.length - 1 === index &&
+                        "auto",
+                      marginTop:
+                        centered &&
+                        tabPosition === "vertical" &&
+                        index === 0 &&
+                        "auto",
+                      marginBottom:
+                        centered &&
+                        tabPosition === "vertical" &&
+                        items.length - 1 === index &&
+                        "auto",
+                    }}
+                  >
+                    <Tab
+                      label={item.label}
+                      selected={item.key === activeKey}
+                      icon={item.icon}
+                      size={size}
+                    />
+                  </div>
+                ) : (
+                  <div
+                    key={nanoid()}
+                    style={{
+                      minWidth: "max-content",
+                      marginLeft:
+                        centered &&
+                        tabPosition === "horizontal" &&
+                        index === 0 &&
+                        "auto",
+                      marginRight:
+                        centered &&
+                        tabPosition === "horizontal" &&
+                        items.length - 1 === index &&
+                        "auto",
+                      marginTop:
+                        centered &&
+                        tabPosition === "vertical" &&
+                        index === 0 &&
+                        "auto",
+                      marginBottom:
+                        centered &&
+                        tabPosition === "vertical" &&
+                        items.length - 1 === index &&
+                        "auto",
+                    }}
+                  >
+                    <Tab
+                      label={item.label}
+                      selected={item.key === activeKey}
+                      icon={item.icon}
+                      size={size}
+                    />
+                  </div>
+                )
+              )}
+
+            {tabBarExtraContent && tabBarExtraContent.right && (
+              <div
+                style={{ marginLeft: !centered && "auto", alignSelf: "center" }}
+              >
+                {tabBarExtraContent.right}
+              </div>
+            )}
+          </TabsContainer>
+          {parentRect && rect && (
+            <ActiveLine
+              $tabPosition={tabPosition}
+              $rect={rect}
+              $parentRect={parentRect}
+            />
           )}
-        </TabsContainer>
-        {parentRect && rect && (
-          <ActiveLine
+        </TabsWrapper>
+        {parentRect && (
+          <HorizontalLine
             $tabPosition={tabPosition}
-            $rect={rect}
             $parentRect={parentRect}
-          />
+          ></HorizontalLine>
         )}
-      </TabsWrapper>
-      {parentRect && (
-        <HorizontalLine
-          $tabPosition={tabPosition}
-          $parentRect={parentRect}
-        ></HorizontalLine>
-      )}
-      <TabContent $tabPosition={tabPosition}>
-        {findTabContentByKey(items, activeKey).children}
-      </TabContent>
-    </Container>
+        <TabContent $tabPosition={tabPosition}>
+          {findTabContentByKey(items, activeKey).children}
+        </TabContent>
+      </Container>
+    </ThemeProvider>
   );
 };
 
@@ -226,6 +233,7 @@ Tabs.defaultProps = {
   tabBarExtraContent: {},
   centered: false,
   size: "medium",
+  $theme: "Light",
 };
 
 Tabs.propTypes = {
@@ -253,6 +261,10 @@ Tabs.propTypes = {
    * Preset tab bar size
    */
   size: PropTypes.oneOf(["small", "medium", "large"]),
+  /**
+   * Toggle between Light and Dark themes for customizability. defaulting to `Light`.
+   */
+  $theme: PropTypes.oneOf(["Light", "Dark"]),
 };
 
 export default Tabs;

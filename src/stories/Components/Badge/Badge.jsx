@@ -1,8 +1,9 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, { ThemeProvider, css } from "styled-components";
 import { GlobalStyle, findTokenValue } from "../../../utility";
 import { generateBadgeBgColor } from "./Badge.helpers";
 import { Dot } from "./Dot";
+import * as myThemes from "../../../tokens";
 
 const PositionBadge = css`
   position: absolute;
@@ -44,28 +45,32 @@ const Badge = (props) => {
     color,
     offset,
     children,
+    $theme,
   } = props;
   const count = $overflowCount ? `${$overflowCount}+` : $count;
 
   return (
-    <Container>
-      {$dot ? (
-        <Dot $status={$status} color={color} offset={offset} />
-      ) : (
-        <div title={count}>
-          <BadgeContainer {...props}>
-            <GlobalStyle />
-            {count}
-          </BadgeContainer>
-        </div>
-      )}
-      {children}
-    </Container>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <Container>
+        {$dot ? (
+          <Dot $status={$status} color={color} offset={offset} />
+        ) : (
+          <div title={count}>
+            <BadgeContainer {...props}>
+              <GlobalStyle />
+              {count}
+            </BadgeContainer>
+          </div>
+        )}
+        {children}
+      </Container>
+    </ThemeProvider>
   );
 };
 
 Badge.defaultProps = {
   size: "default",
+  $theme: "Light",
 };
 
 export default Badge;

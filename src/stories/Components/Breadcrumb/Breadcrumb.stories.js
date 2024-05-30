@@ -1,6 +1,8 @@
 import { Link } from "./Link";
 import { generateIconNames } from "../Button";
 import Breadcrumb from "./Breadcrumb";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "components/Breadcrumb",
@@ -91,14 +93,16 @@ export const BreadcrumbItem = {
     $dropdown: true,
     href: "https://react.dev/",
   },
-  render: ({ $text, $setText, $icon, $setIcon, $dropdown, href }) => (
-    <Link
-      $text={$text}
-      $setText={$setText}
-      $icon={$icon}
-      $setIcon={$setIcon}
-      $dropdown={$dropdown}
-      href={href}
-    ></Link>
+  render: ({ $text, $setText, $icon, $setIcon, $dropdown, href, $theme }) => (
+    <ThemeProvider theme={myThemes[$theme]}>
+      <Link
+        $text={$text}
+        $setText={$setText}
+        $icon={$icon}
+        $setIcon={$setIcon}
+        $dropdown={$dropdown}
+        href={href}
+      ></Link>
+    </ThemeProvider>
   ),
 };

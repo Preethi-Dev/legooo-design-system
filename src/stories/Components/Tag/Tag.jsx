@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle, findTokenValue } from "../../../utility";
 import { CloseOutlined } from "@ant-design/icons";
 import {
@@ -8,6 +8,7 @@ import {
   generateColorForTag,
   defaultColors,
 } from "./Tag.helpers";
+import * as myThemes from "../../../tokens";
 
 const TagContainer = styled.div`
   display: inline-flex;
@@ -51,13 +52,6 @@ const IconWrapper = styled.div`
     defaultColors.includes(color)
       ? findTokenValue(theme[generateColorForTag(color)], theme)
       : findTokenValue(theme["Tag-colorTextLightSolid"], theme)};
-
-  ${({ theme }) =>
-    Object.keys(theme).map(
-      (token) =>
-        token.includes("Tag") &&
-        console.log(token, findTokenValue(theme[token], theme))
-    )}
 `;
 
 const CloseIconWrapper = styled(IconWrapper)`
@@ -74,6 +68,7 @@ const Tag = ({
   $checkableTag,
   children,
   checked,
+  $theme,
 }) => {
   const [isTagVisible, setIsTagVisible] = useState(true);
   const [isTagActive, setIsTagActive] = useState(false);
@@ -91,43 +86,53 @@ const Tag = ({
   }, []);
 
   return (
-    isTagVisible && (
-      <TagContainer
-        color={color}
-        $bordered={$bordered}
-        $checkableTag={$checkableTag}
-        onClick={handleClickOnTag}
-        style={{
-          backgroundColor: isTagActive && "#1677FF",
-          color: isTagActive && "#fff",
-        }}
-      >
-        <GlobalStyle />
-        {icon && (
-          <IconWrapper
-            color={color}
-            $checkableTag={$checkableTag}
-            style={{
-              color: isTagActive && "#fff",
-            }}
-          >
-            {icon}
-          </IconWrapper>
-        )}
-        {children}
-        {closeIcon && (
-          <CloseIconWrapper
-            onClick={handleClickOnClose}
-            style={{
-              color: isTagActive && "#fff",
-            }}
-          >
-            {closeIcon === true ? <CloseOutlined /> : closeIcon}
-          </CloseIconWrapper>
-        )}
-      </TagContainer>
-    )
+    <ThemeProvider theme={myThemes[$theme]}>
+      {isTagVisible && (
+        <TagContainer
+          color={color}
+          $bordered={$bordered}
+          $checkableTag={$checkableTag}
+          onClick={handleClickOnTag}
+          style={{
+            backgroundColor: isTagActive && "#1677FF",
+            color: isTagActive && "#fff",
+          }}
+        >
+          <GlobalStyle />
+          {icon && (
+            <IconWrapper
+              color={color}
+              $checkableTag={$checkableTag}
+              style={{
+                color: isTagActive && "#fff",
+              }}
+            >
+              {icon}
+            </IconWrapper>
+          )}
+          {children}
+          {closeIcon && (
+            <CloseIconWrapper
+              onClick={handleClickOnClose}
+              style={{
+                color: isTagActive && "#fff",
+              }}
+            >
+              {closeIcon === true ? <CloseOutlined /> : closeIcon}
+            </CloseIconWrapper>
+          )}
+        </TagContainer>
+      )}
+    </ThemeProvider>
   );
+};
+
+Tag.defaultProps = {
+  closeIcon: true,
+  color: "default",
+  $bordered: true,
+  $checkableTag: false,
+  $theme: "Light",
 };
 
 export default Tag;

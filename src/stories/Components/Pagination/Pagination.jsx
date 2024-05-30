@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { nanoid } from "nanoid";
 import { PaginationItem } from "./PaginationItem";
 import { PaginationArrow } from "./PaginationArrow";
 import { Truncation } from "./Truncation";
+import * as myThemes from "../../../tokens";
 
 const PaginationContainer = styled.div`
   display: inline-flex;
@@ -11,7 +12,7 @@ const PaginationContainer = styled.div`
   gap: 0.5rem;
 `;
 
-const Pagination = ({ pages, size, $current }) => {
+const Pagination = ({ pages, size, $current, $theme }) => {
   const [current, setCurrent] = useState($current || pages[0]);
 
   const prevDisabled = pages[0] === current;
@@ -34,29 +35,40 @@ const Pagination = ({ pages, size, $current }) => {
   };
 
   return (
-    <PaginationContainer onClick={handlePageClick}>
-      <div onClick={prevDisabled ? null : handlePrevClick}>
-        <PaginationArrow arrow={"left"} disabled={prevDisabled} size={size} />
-      </div>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <PaginationContainer onClick={handlePageClick}>
+        <div onClick={prevDisabled ? null : handlePrevClick}>
+          <PaginationArrow arrow={"left"} disabled={prevDisabled} size={size} />
+        </div>
 
-      {pages.length <= 7 ? (
-        pages.map((page) => (
-          <PaginationItem
-            item={page}
-            key={nanoid()}
-            $active={page === current}
+        {pages.length <= 7 ? (
+          pages.map((page) => (
+            <PaginationItem
+              item={page}
+              key={nanoid()}
+              $active={page === current}
+              size={size}
+            />
+          ))
+        ) : (
+          <Truncation pages={pages} current={current} size={size} />
+        )}
+
+        <div onClick={nextDisabled ? null : handleNextClick}>
+          <PaginationArrow
+            arrow={"right"}
+            disabled={nextDisabled}
             size={size}
           />
-        ))
-      ) : (
-        <Truncation pages={pages} current={current} size={size} />
-      )}
-
-      <div onClick={nextDisabled ? null : handleNextClick}>
-        <PaginationArrow arrow={"right"} disabled={nextDisabled} size={size} />
-      </div>
-    </PaginationContainer>
+        </div>
+      </PaginationContainer>
+    </ThemeProvider>
   );
+};
+
+Pagination.defaultProps = {
+  size: "default",
+  $theme: "Light",
 };
 
 export default Pagination;

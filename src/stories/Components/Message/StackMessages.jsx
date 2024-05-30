@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Button from "../Button";
 import { Atom } from "./Atom";
-import styled, { css, keyframes } from "styled-components";
+import styled, { ThemeProvider, css, keyframes } from "styled-components";
 import { nanoid } from "nanoid";
+import * as myThemes from "../../../tokens";
 
 const slideInTop = keyframes`
   0% {
@@ -54,7 +55,7 @@ export const StackMessages = (props) => {
   };
 
   return (
-    <>
+    <ThemeProvider theme={myThemes[props.$theme]}>
       <Container>
         <MessagesContainer>
           {atoms.map((atom) => (
@@ -66,12 +67,11 @@ export const StackMessages = (props) => {
       </Container>
       <div onClick={handleClick}>
         <Button
-          $shape="Default"
-          $size="Default"
+          $theme={props.$theme}
           $type="Primary"
           label="Display Normal Message"
         />
       </div>
-    </>
+    </ThemeProvider>
   );
 };

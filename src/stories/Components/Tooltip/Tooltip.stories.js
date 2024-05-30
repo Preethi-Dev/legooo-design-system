@@ -71,7 +71,7 @@ export const Placement = {
   parameters: {
     layout: "centered",
   },
-  render: () => (
+  render: ({ $theme }) => (
     <div
       style={{
         display: "flex",
@@ -83,18 +83,13 @@ export const Placement = {
     >
       <div style={{ display: "flex", gap: "1rem", alignSelf: "center" }}>
         <Tooltip placement="topLeft" title={"prompt text"}>
-          <Button $shape="Default" $size="Default" $type="Default" label="TL" />
+          <Button $theme={$theme} label="TL" />
         </Tooltip>
         <Tooltip placement="top" title={"prompt text"}>
-          <Button
-            $shape="Default"
-            $size="Default"
-            $type="Default"
-            label="TOP"
-          />
+          <Button $theme={$theme} label="TOP" />
         </Tooltip>
         <Tooltip placement="topRight" title={"prompt text"}>
-          <Button $shape="Default" $size="Default" $type="Default" label="TR" />
+          <Button $theme={$theme} label="TR" />
         </Tooltip>
       </div>
       <div
@@ -114,28 +109,13 @@ export const Placement = {
           }}
         >
           <Tooltip placement="leftTop" title={"prompt text"}>
-            <Button
-              $shape="Default"
-              $size="Default"
-              $type="Default"
-              label="LT"
-            />
+            <Button $theme={$theme} label="LT" />
           </Tooltip>
           <Tooltip placement="left" title={"prompt text"}>
-            <Button
-              $shape="Default"
-              $size="Default"
-              $type="Default"
-              label="LEFT"
-            />
+            <Button $theme={$theme} label="LEFT" />
           </Tooltip>
           <Tooltip placement="leftBottom" title={"prompt text"}>
-            <Button
-              $shape="Default"
-              $size="Default"
-              $type="Default"
-              label="LB"
-            />
+            <Button $theme={$theme} label="LB" />
           </Tooltip>
         </div>
         <div
@@ -147,45 +127,25 @@ export const Placement = {
           }}
         >
           <Tooltip placement="rightTop" title={"prompt text"}>
-            <Button
-              $shape="Default"
-              $size="Default"
-              $type="Default"
-              label="RT"
-            />
+            <Button $theme={$theme} label="RT" />
           </Tooltip>
           <Tooltip placement="right" title={"prompt text"}>
-            <Button
-              $shape="Default"
-              $size="Default"
-              $type="Default"
-              label="RIGHT"
-            />
+            <Button $theme={$theme} label="RIGHT" />
           </Tooltip>
           <Tooltip placement="rightBottom" title={"prompt text"}>
-            <Button
-              $shape="Default"
-              $size="Default"
-              $type="Default"
-              label="RB"
-            />
+            <Button $theme={$theme} label="RB" />
           </Tooltip>
         </div>
       </div>
       <div style={{ display: "flex", gap: "1rem", alignSelf: "center" }}>
         <Tooltip placement="bottomLeft" title={"prompt text"}>
-          <Button $shape="Default" $size="Default" $type="Default" label="BL" />
+          <Button $theme={$theme} label="BL" />
         </Tooltip>
         <Tooltip placement="bottom" title={"prompt text"}>
-          <Button
-            $shape="Default"
-            $size="Default"
-            $type="Default"
-            label="BOTTOM"
-          />
+          <Button $theme={$theme} label="BOTTOM" />
         </Tooltip>
         <Tooltip placement="bottomRight" title={"prompt text"}>
-          <Button $shape="Default" $size="Default" $type="Default" label="BR" />
+          <Button $theme={$theme} label="BR" />
         </Tooltip>
       </div>
     </div>
@@ -213,7 +173,7 @@ const colors = [
 ];
 
 export const Color = {
-  render: () => (
+  render: ({ $theme }) => (
     <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
       {colors.map((color) => (
         <Tooltip
@@ -222,12 +182,7 @@ export const Color = {
           color={color}
           key={nanoid()}
         >
-          <Button
-            $shape="Default"
-            $size="Default"
-            $type="Default"
-            label={color}
-          />
+          <Button $theme={$theme} label={color} />
         </Tooltip>
       ))}
     </div>
@@ -237,7 +192,7 @@ export const Color = {
 export const ToolTip = {
   parameters: {
     controls: {
-      exclude: ["open"],
+      exclude: ["open", "$theme"],
     },
   },
   argTypes: Basic.argTypes,
@@ -250,6 +205,11 @@ export const ToolTip = {
 };
 
 export const AutoShift = {
+  parameters: {
+    controls: {
+      exclude: ["$theme"],
+    },
+  },
   args: { ...Basic.args, open: false },
   render: (props) => <TooltipShift {...props} />,
 };
@@ -257,7 +217,7 @@ export const AutoShift = {
 export const Open = {
   parameters: {
     controls: {
-      exclude: ["open", "color", "placement", "title"],
+      exclude: ["open", "color", "placement", "title", "$theme"],
     },
   },
   args: {

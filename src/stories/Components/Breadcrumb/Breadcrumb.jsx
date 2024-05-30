@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import PropTypes from "prop-types";
 import CollapsedBreadcrumb from "./CollapsedBreadcrumb";
 import BreadcrumbItem from "./BreadcrumbItem";
+import * as myThemes from "../../../tokens";
 
 export const Container = styled.div`
   display: inline-flex;
@@ -11,13 +12,22 @@ export const Container = styled.div`
 `;
 
 const Breadcrumb = (props) => {
-  const { $items, $separator, $showLastSeparator } = props;
+  const { $items, $separator, $showLastSeparator, $theme } = props;
 
-  return $items.length <= 4 ? (
-    <BreadcrumbItem {...props} />
-  ) : (
-    <CollapsedBreadcrumb {...props} />
+  return (
+    <ThemeProvider theme={myThemes[$theme]}>
+      {$items.length <= 4 ? (
+        <BreadcrumbItem {...props} />
+      ) : (
+        <CollapsedBreadcrumb {...props} />
+      )}
+    </ThemeProvider>
   );
+};
+
+Breadcrumb.defaulProps = {
+  $separator: "/",
+  $theme: "Light",
 };
 
 Breadcrumb.propTypes = {

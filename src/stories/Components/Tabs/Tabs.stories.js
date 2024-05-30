@@ -2,6 +2,8 @@ import { AndroidOutlined, AppleOutlined } from "@ant-design/icons";
 import { Tab } from "./Tab";
 import Button from "../Button";
 import Tabs from "./Tabs";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Tabs",
@@ -29,7 +31,7 @@ const items = [
 export const Basic = {
   parameters: {
     controls: {
-      include: ["items", "defaultActiveKey"],
+      include: ["items", "defaultActiveKey", "$theme"],
     },
   },
   argTypes: {
@@ -48,7 +50,7 @@ export const Basic = {
 export const Centered = {
   parameters: {
     controls: {
-      include: ["centered"],
+      include: ["centered", "$theme"],
     },
   },
   argTypes: {
@@ -78,7 +80,7 @@ const IconItems = [AppleOutlined, AndroidOutlined].map((Icon, i) => {
 export const Icon = {
   parameters: {
     controls: {
-      include: ["items"],
+      include: ["items", "$theme"],
     },
   },
   args: {
@@ -91,7 +93,7 @@ export const Icon = {
 export const Position = {
   parameters: {
     controls: {
-      include: ["tabPosition"],
+      include: ["tabPosition", "$theme"],
     },
   },
   argTypes: {
@@ -110,7 +112,7 @@ export const Position = {
 export const ExtraContent = {
   parameters: {
     controls: {
-      include: ["tabBarExtraContent"],
+      include: ["tabBarExtraContent", "$theme"],
     },
   },
   argTypes: {
@@ -124,22 +126,8 @@ export const ExtraContent = {
     defaultActiveKey: "1",
     tabPosition: "horizontal",
     tabBarExtraContent: {
-      left: (
-        <Button
-          $shape="Default"
-          $size="Default"
-          $type="Default"
-          label="Left Extra Content"
-        />
-      ),
-      right: (
-        <Button
-          $shape="Default"
-          $size="Default"
-          $type="Default"
-          label="Right Extra Content"
-        />
-      ),
+      left: <Button $type="Default" label="Left Extra Content" />,
+      right: <Button $type="Default" label="Right Extra Content" />,
     },
   },
 };
@@ -147,7 +135,7 @@ export const ExtraContent = {
 export const HorizontalSlide = {
   parameters: {
     controls: {
-      include: ["items"],
+      include: ["items", "$theme"],
     },
   },
   args: {
@@ -166,7 +154,7 @@ export const HorizontalSlide = {
 export const VerticalSlide = {
   parameters: {
     controls: {
-      include: ["items"],
+      include: ["items", "$theme"],
     },
   },
   args: {
@@ -185,7 +173,7 @@ export const VerticalSlide = {
 export const Size = {
   parameters: {
     controls: {
-      include: ["size"],
+      include: ["size", "$theme"],
     },
   },
   argTypes: {
@@ -222,5 +210,9 @@ export const Atom = {
     icon: <AndroidOutlined />,
     selected: false,
   },
-  render: (props) => <Tab {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <Tab {...props} />
+    </ThemeProvider>
+  ),
 };

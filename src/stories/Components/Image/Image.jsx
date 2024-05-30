@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled, { ThemeProvider, css } from "styled-components";
 import fallback from "./fallback.svg";
 import { GlobalStyle, findTokenValue } from "../../../utility";
 import {
@@ -12,6 +12,7 @@ import {
   ZoomOutOutlined,
 } from "@ant-design/icons";
 import { saveAs } from "file-saver";
+import * as myThemes from "../../../tokens";
 
 const previewMode = css`
   &:after {
@@ -118,6 +119,7 @@ const Image = ({
   blur,
   download: $download,
   preview,
+  $theme,
 }) => {
   const [isPreviewOn, setIsPreviewOn] = useState(false);
   const [isVerticalFlip, setIsVerticalFlip] = useState(false);
@@ -156,7 +158,7 @@ const Image = ({
   };
 
   return (
-    <>
+    <ThemeProvider theme={myThemes[$theme]}>
       <ImageContainer $preview={$preview} onClick={handleImgClick} $blur={blur}>
         <GlobalStyle />
 
@@ -213,7 +215,7 @@ const Image = ({
           </PreviewTool>
         </Overlay>
       )}
-    </>
+    </ThemeProvider>
   );
 };
 
@@ -223,6 +225,7 @@ Image.defaultProps = {
   src: fallback,
   blur: false,
   download: true,
+  $theme: "Light",
 };
 
 export default Image;

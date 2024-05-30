@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled, { ThemeProvider, css } from "styled-components";
 import { GlobalStyle, findTokenValue } from "../../../utility";
 import { CloseOutlined } from "@ant-design/icons";
 import { generateAnimationByPlacement } from "./Drawer.helpers";
+import * as myThemes from "../../../tokens";
 
 const Container = styled.div`
   display: flex;
@@ -93,6 +94,7 @@ const Drawer = ({
   open,
   closable = true,
   extra,
+  $theme,
 }) => {
   const containerRef = useRef(null);
   const handleClick = (e) => {
@@ -100,21 +102,23 @@ const Drawer = ({
   };
 
   return (
-    <Container onClick={handleClick} ref={containerRef} open={open}>
-      <DrawerContainer $size={size} open={open} $placement={placement}>
-        <GlobalStyle />
-        <DrawerHeader>
-          {closable && (
-            <DrawerClose onClick={onClose}>
-              <CloseOutlined />
-            </DrawerClose>
-          )}
-          <DrawerTitle>{title && title}</DrawerTitle>
-          <Extra>{extra && extra}</Extra>
-        </DrawerHeader>
-        <DrawerBody>{children}</DrawerBody>
-      </DrawerContainer>
-    </Container>
+    <ThemeProvider theme={myThemes[$theme]}>
+      <Container onClick={handleClick} ref={containerRef} open={open}>
+        <DrawerContainer $size={size} open={open} $placement={placement}>
+          <GlobalStyle />
+          <DrawerHeader>
+            {closable && (
+              <DrawerClose onClick={onClose}>
+                <CloseOutlined />
+              </DrawerClose>
+            )}
+            <DrawerTitle>{title && title}</DrawerTitle>
+            <Extra>{extra && extra}</Extra>
+          </DrawerHeader>
+          <DrawerBody>{children}</DrawerBody>
+        </DrawerContainer>
+      </Container>
+    </ThemeProvider>
   );
 };
 
@@ -123,6 +127,7 @@ Drawer.defaultProps = {
   placement: "right",
   open: false,
   closable: true,
+  $theme: "Light",
 };
 
 Drawer.propTypes = {
@@ -154,6 +159,10 @@ Drawer.propTypes = {
    * Extra actions area at corner
    */
   extra: PropTypes.node,
+  /**
+   * Toggle between Light and Dark themes for customizability. defaulting to `Light`.
+   */
+  $theme: PropTypes.oneOf(["Light", "Dark"]),
 };
 
 export default Drawer;

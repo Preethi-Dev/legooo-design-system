@@ -58,7 +58,7 @@ export const Basic = {
 export const DropdownItem = {
   parameters: {
     controls: {
-      exclude: ["$placement"],
+      exclude: ["$placement", "$theme"],
     },
   },
   argTypes: {
@@ -101,6 +101,11 @@ export const DropdownItem = {
 };
 
 export const Menu = {
+  parameters: {
+    controls: {
+      exclude: ["$theme"],
+    },
+  },
   argTypes: {
     /*
      * Arrow Placement
@@ -141,6 +146,7 @@ export const Placements = {
         "$icon",
         "$items",
         "$setIcon",
+        "$theme",
       ],
     },
   },
@@ -169,7 +175,7 @@ export const Placements = {
 export const Arrows = {
   parameters: {
     controls: {
-      exclude: ["$items"],
+      exclude: ["$items", "$theme"],
     },
   },
   argTypes: {
@@ -200,7 +206,7 @@ export const Arrows = {
 export const ScrollMenu = {
   parameters: {
     controls: {
-      exclude: ["$placement"],
+      exclude: ["$placement", "$theme"],
     },
   },
   argTypes: {

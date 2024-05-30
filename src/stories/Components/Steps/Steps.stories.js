@@ -112,7 +112,7 @@ export const Basic = {
 
 export const Mini = {
   parameters: {
-    controls: { exclude: ["current", "items"] },
+    controls: { exclude: ["current", "items", "$theme"] },
   },
   argTypes: {
     ...Basic.argTypes,
@@ -127,7 +127,7 @@ export const Mini = {
 export const WithIcon = {
   parameters: {
     controls: {
-      exclude: [Object.keys(Basic.argTypes), "size", "items"].flat(),
+      exclude: [Object.keys(Basic.argTypes), "size", "items", "$theme"].flat(),
     },
   },
   args: { ...Basic.args, direction: "horizontal", items: itemsWithIcon },
@@ -136,7 +136,7 @@ export const WithIcon = {
 export const Vertical = {
   parameters: {
     controls: {
-      exclude: ["$progressDot", "current", "size", "items"],
+      exclude: ["$progressDot", "current", "size", "items", "$theme"],
       include: ["direction"],
     },
   },
@@ -148,7 +148,7 @@ export const Vertical = {
 
 export const VerticalMini = {
   parameters: {
-    controls: { exclude: ["current", "items"] },
+    controls: { exclude: ["current", "items", "$theme"] },
   },
   argTypes: {
     ...Basic.argTypes,
@@ -164,7 +164,7 @@ export const VerticalMini = {
 export const DotStyle = {
   parameters: {
     controls: {
-      exclude: ["$progressDot", "current", "size", "items"],
+      exclude: ["$progressDot", "current", "size", "items", "$theme"],
       include: ["direction"],
     },
   },
@@ -177,7 +177,7 @@ export const DotStyle = {
 export const ErrorState = {
   parameters: {
     controls: {
-      exclude: ["current", "size", "items"],
+      exclude: ["current", "size", "items", "$theme"],
     },
   },
   argTypes: {
@@ -189,7 +189,7 @@ export const ErrorState = {
 export const SwitchStep = {
   parameters: {
     controls: {
-      exclude: ["$progressDot", "size", "items"],
+      exclude: ["$progressDot", "size", "items", "$theme"],
     },
   },
   argTypes: {
@@ -203,6 +203,11 @@ export const SwitchStep = {
 };
 
 export const Item = {
+  parameters: {
+    controls: {
+      exclude: ["$theme"],
+    },
+  },
   argTypes: {
     direction: { control: "inline-radio", options: ["vertical", "horizontal"] },
     size: { control: "inline-radio", options: ["small", "medium"] },
@@ -236,6 +241,11 @@ export const Item = {
 };
 
 export const ItemIcon = {
+  parameters: {
+    controls: {
+      exclude: ["$theme"],
+    },
+  },
   args: {
     $status: "finished",
     size: "small",
@@ -257,7 +267,7 @@ export const ItemIcon = {
 export const Tail = {
   parameters: {
     controls: {
-      exclude: ["size"],
+      exclude: ["size", "$theme"],
     },
   },
   argTypes: {

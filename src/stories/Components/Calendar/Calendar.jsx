@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { GlobalStyle, findTokenValue } from "../../../utility";
-import styled from "styled-components";
+import PropTypes from "prop-types";
+import styled, { ThemeProvider } from "styled-components";
 import { nanoid } from "nanoid";
 import { CalendarDays } from "./CalendarDays";
 import { generateYears, months, weekdays } from "./Calendar.helpers";
 import { YearView } from "./YearView";
+import * as myThemes from "../../../tokens";
 
 const CalendarContainer = styled.div`
   width: 910px;
@@ -49,7 +51,7 @@ const Mode = styled.div`
   cursor: pointer;
 `;
 
-const Calendar = () => {
+const Calendar = ({ $theme }) => {
   const [currentDay, setCurrentDay] = useState(new Date());
   const [selectedMonth, setSelectedMonth] = useState(
     months[currentDay.getMonth()]
@@ -93,72 +95,92 @@ const Calendar = () => {
   };
 
   return (
-    <CalendarContainer>
-      <GlobalStyle />
-      <CalendarHeader>
-        <h2 style={{ marginRight: "auto" }}>
-          {months[currentDay.getMonth()]} {currentDay.getFullYear()}
-        </h2>
-        <select
-          name="choice"
-          value={selectedMonth}
-          onChange={handleChangeMonth}
-        >
-          {months.map((month) => (
-            <option value={month} key={nanoid()}>
-              {month}
-            </option>
-          ))}
-        </select>
-        <select name="choice" value={selectedYear} onChange={handleChangeYear}>
-          {generateYears().map((year) => (
-            <option value={year} key={nanoid()}>
-              {year}
-            </option>
-          ))}
-        </select>
-        <ModeContainer>
-          <Mode
-            onClick={handleViewClick}
-            style={{
-              color: isMonthView && "rgba(24, 144, 255, 1)",
-              borderColor: isMonthView && "rgba(24, 144, 255, 1)",
-            }}
+    <ThemeProvider theme={myThemes[$theme]}>
+      <CalendarContainer>
+        <GlobalStyle />
+        <CalendarHeader>
+          <h2 style={{ marginRight: "auto" }}>
+            {months[currentDay.getMonth()]} {currentDay.getFullYear()}
+          </h2>
+          <select
+            name="choice"
+            value={selectedMonth}
+            onChange={handleChangeMonth}
           >
-            Month
-          </Mode>
-          <Mode
-            onClick={handleViewClick}
-            style={{
-              color: !isMonthView && "rgba(24, 144, 255, 1)",
-              borderColor: !isMonthView && "rgba(24, 144, 255, 1)",
-            }}
+            {months.map((month) => (
+              <option value={month} key={nanoid()}>
+                {month}
+              </option>
+            ))}
+          </select>
+          <select
+            name="choice"
+            value={selectedYear}
+            onChange={handleChangeYear}
           >
-            Year
-          </Mode>
-        </ModeContainer>
-      </CalendarHeader>
-      <CalendarBody>
-        {isMonthView ? (
-          <>
-            <TableHeader>
-              {weekdays.map((weekday) => (
-                <WeekDay key={nanoid()}>{weekday}</WeekDay>
-              ))}
-            </TableHeader>
-            <Table>
-              <CalendarDays
-                day={currentDay}
-                changeCurrentDay={changeCurrentDay}
-              />
-            </Table>
-          </>
-        ) : (
-          <YearView day={currentDay} changeCurrentMonth={changeCurrentMonth} />
-        )}
-      </CalendarBody>
-    </CalendarContainer>
+            {generateYears().map((year) => (
+              <option value={year} key={nanoid()}>
+                {year}
+              </option>
+            ))}
+          </select>
+          <ModeContainer>
+            <Mode
+              onClick={handleViewClick}
+              style={{
+                color: isMonthView && "rgba(24, 144, 255, 1)",
+                borderColor: isMonthView && "rgba(24, 144, 255, 1)",
+              }}
+            >
+              Month
+            </Mode>
+            <Mode
+              onClick={handleViewClick}
+              style={{
+                color: !isMonthView && "rgba(24, 144, 255, 1)",
+                borderColor: !isMonthView && "rgba(24, 144, 255, 1)",
+              }}
+            >
+              Year
+            </Mode>
+          </ModeContainer>
+        </CalendarHeader>
+        <CalendarBody>
+          {isMonthView ? (
+            <>
+              <TableHeader>
+                {weekdays.map((weekday) => (
+                  <WeekDay key={nanoid()}>{weekday}</WeekDay>
+                ))}
+              </TableHeader>
+              <Table>
+                <CalendarDays
+                  day={currentDay}
+                  changeCurrentDay={changeCurrentDay}
+                />
+              </Table>
+            </>
+          ) : (
+            <YearView
+              day={currentDay}
+              changeCurrentMonth={changeCurrentMonth}
+            />
+          )}
+        </CalendarBody>
+      </CalendarContainer>
+    </ThemeProvider>
   );
+};
+
+Calendar.defaultProps = {
+  $theme: "Light",
+};
+
+Calendar.propTypes = {
+  /**
+   * Toggle between Light and Dark themes for customizability. defaulting to `Light`.
+   */
+  $theme: PropTypes.oneOf(["Light", "Dark"]),
 };
 
 export default Calendar;

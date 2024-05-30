@@ -2,6 +2,8 @@ import Pagination from "./Pagination";
 import { PaginationItem } from "./PaginationItem";
 import { PaginationArrow } from "./PaginationArrow";
 import PaginationItemEllipsis from "./PaginationItemEllipsis";
+import * as myThemes from "../../../tokens";
+import { ThemeProvider } from "styled-components";
 
 export default {
   title: "Components/Pagination",
@@ -59,7 +61,11 @@ export const Item = {
     size: "default",
     $active: false,
   },
-  render: (props) => <PaginationItem {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <PaginationItem {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const Prev = {
@@ -81,7 +87,11 @@ export const Prev = {
     disabled: false,
     arrow: "left",
   },
-  render: (props) => <PaginationArrow {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <PaginationArrow {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const Next = {
@@ -103,9 +113,17 @@ export const Next = {
     disabled: false,
     arrow: "right",
   },
-  render: (props) => <PaginationArrow {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <PaginationArrow {...props} />
+    </ThemeProvider>
+  ),
 };
 
 export const Ellipsis = {
-  render: () => <PaginationItemEllipsis />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <PaginationItemEllipsis />
+    </ThemeProvider>
+  ),
 };

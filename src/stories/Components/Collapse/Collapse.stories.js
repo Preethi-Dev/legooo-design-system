@@ -1,6 +1,8 @@
 import Collapse from "./Collapse";
 import { CollapseItem } from "./CollapseItem";
 import { generateIconNames } from "../Button";
+import { ThemeProvider } from "styled-components";
+import * as myThemes from "../../../tokens";
 
 export default {
   title: "Components/Collapse",
@@ -172,5 +174,9 @@ export const Item = {
     icon: "RightOutlined",
     content: <p>This is content</p>,
   },
-  render: (props) => <CollapseItem {...props} />,
+  render: (props) => (
+    <ThemeProvider theme={myThemes[props.$theme]}>
+      <CollapseItem {...props} />
+    </ThemeProvider>
+  ),
 };

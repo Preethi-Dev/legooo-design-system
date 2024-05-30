@@ -3,6 +3,14 @@ import { Container } from "./Breadcrumb";
 import { nanoid } from "nanoid";
 import { Link } from "./Link";
 import { Separator } from "./Separator";
+import styled from "styled-components";
+import { findTokenValue } from "../../../utility";
+
+const ThreeDot = styled.p`
+  color: ${({ theme }) => findTokenValue(theme["Breadcrumb-colorText"], theme)};
+  cursor: pointer;
+  margin: 0;
+`;
 
 const BreadcrumbItem = (props) => {
   const { $items, $separator, $showLastSeparator, collapsed, setCollapsed } =
@@ -30,12 +38,7 @@ const BreadcrumbItem = (props) => {
             )}
             {collapsed && index === 1 && (
               <>
-                <p
-                  onClick={() => setCollapsed(false)}
-                  style={{ cursor: "pointer", margin: 0 }}
-                >
-                  ...
-                </p>
+                <ThreeDot onClick={() => setCollapsed(false)}>...</ThreeDot>
                 <Separator separator={$separator} />
               </>
             )}
